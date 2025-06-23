@@ -1,0 +1,81 @@
+---
+const eventos = [
+    {
+        data: "Setembro, 18:00",
+        descricao: "Noite de fados tradicional.",
+    },
+    {
+        data: "Outubro, 17:00",
+        descricao: "Festival de sopas e sabores regionais.",
+    },
+    {
+        data: "Novembro, 16:00",
+        descricao: "Magusto comunitário com castanhas e música popular.",
+    },
+    {
+        data: "Dezembro, 19:00",
+        descricao: "Concerto de Natal com coro local.",
+    },
+    {
+        data: "Janeiro, 15:00",
+        descricao: "Encontro de Janeiras pelas ruas da vila.",
+    },
+    {
+        data: "Fevereiro, 20:00",
+        descricao: "Baile de Carnaval com concurso de máscaras.",
+    },
+    {
+        data: "Março, 18:00",
+        descricao: "Tarde de teatro amador.",
+    },
+    {
+        data: "Abril, 17:00",
+        descricao: "Caminhada solidária e piquenique.",
+    },
+    {
+        data: "Maio, 16:00",
+        descricao: "Feira de artesanato local.",
+    },
+    {
+        data: "Junho, 21:00",
+        descricao: "Arraial de São João com sardinhada.",
+    },
+    {
+        data: "Julho, 18:00",
+        descricao: "Abertura oficial das festas com atuação da banda filarmónica.",
+    },
+];
+---
+
+<div class="min-h-screen bg-[url('/bandeiras.png')] bg-cover bg-top flex flex-col bg-fixed">
+        <header class="w-full py-4 flex justify-between items-center bg-transparent fixed top-0 left-0 z-50">
+                <div class="ml-8">
+                    <ul class="flex space-x-6 text-white font-semibold">
+                        <li><a href="/" class="hover:underline">Home</a></li>
+                    </ul>
+                     <!-- <img src="/logo.png" alt="Logo Festas São Pedro" class="h-12" /> -->
+                </div> 
+                <nav class="mr-8">
+                        <ul class="flex space-x-6 text-white font-semibold">
+                                <li><a href="/eventos" class="hover:underline">Eventos</a></li>
+                                <li><a href="/cartaz" class="hover:underline">Cartaz</a></li>
+                                <li><a href="/sobre" class="hover:underline">Sobre nós</a></li>
+                                <li><a href="/sobre" class="hover:underline">QUERO AJUDAR!</a></li>
+                        </ul>
+                </nav>
+        </header>
+        <section class="flex flex-col items-center justify-center flex-1 bg-transparent">
+                <!-- Linha cronológica de eventos -->
+                <div class="my-60 w-full max-w-3xl">
+                        <ol class="relative border-l-4 border-yellow-400">
+                                {eventos.map((evento, idx) => (
+                                    <li class={`ml-6${idx !== eventos.length - 1 ? " mb-10" : ""}`}>
+                                        <span class="absolute flex items-center justify-center w-8 h-8 bg-yellow-400 rounded-full -left-4 ring-4 ring-white"></span>
+                                        <h3 class="text-lg font-semibold text-white">{evento.data}</h3>
+                                        <p class="text-white">{evento.descricao}</p>
+                                    </li>
+                                ))}
+                        </ol>
+                </div>
+        </section>
+</div>

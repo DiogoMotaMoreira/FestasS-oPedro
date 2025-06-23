@@ -1,0 +1,174 @@
+---
+const grupo = [
+    {
+        Categoria: "Direção e Coordenação",
+        Pessoas: [
+            {
+                Nome: "Carlos Moreira",
+                Foto: "",
+                Descrição: "Criador, Gestor, Relações Públicas"
+            },
+            {
+                Nome: "Diogo Moreira",
+                Foto: "",
+                Descrição: "Informático, Relações Públicas"
+            },
+            {
+                Nome: "Carlos Moreira Jr.",
+                Foto: "",
+                Descrição: "Tesoureiro, Relações Públicas"
+            }
+        ]
+    },
+    {
+        Categoria: "Equipa Principal",
+        Pessoas: [
+            {
+                Nome: "Carla Patricia",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "Maria Ribeiro",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "Cecília Ferreira",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "Manuela Moreira",
+                Foto: "",
+                Descrição:""
+            },
+            {
+                Nome: "Raquel Moreira",
+                Foto: "",
+                Descrição:""
+            },
+            {
+                Nome: "Paulinho",
+                Foto: "",
+                Descrição:""
+            }
+        ]
+    },
+    {
+        Categoria: "Patrocinadores Oficiais",
+        Pessoas: [
+            {
+                Nome: "DS Imobiliária Lousada",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "DSI Créditos Freamunde",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "ManuelCars",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "Caide de Rei SC",
+                Foto: "",
+                Descrição:""
+            }
+        ]
+    },
+    {
+        Categoria: "Top 6 Apoiadores",
+        Pessoas: [
+            {
+                Nome: "São Pedro",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "Vitorino",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "Carlos Mota",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "Arsénio",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "David Moreira",
+                Foto: "",
+                Descrição: ""
+            },
+            {
+                Nome: "Inês Moreira",
+                Foto: "",
+                Descrição: ""
+            }
+
+        ]
+    },
+];
+---
+
+<div class="min-h-screen bg-[url('/bandeiras.png')] bg-cover bg-top flex flex-col bg-fixed">
+        <header class="w-full py-4 flex justify-between items-center bg-transparent fixed top-0 left-0 z-50">
+                <div class="ml-8">
+                    <ul class="flex space-x-6 text-white font-semibold">
+                        <li><a href="/" class="hover:underline">Home</a></li>
+                    </ul>
+                     <!-- <img src="/logo.png" alt="Logo Festas São Pedro" class="h-12" /> -->
+                </div> 
+                <nav class="mr-8">
+                        <ul class="flex space-x-6 text-white font-semibold">
+                                <li><a href="/eventos" class="hover:underline">Eventos</a></li>
+                                <li><a href="/cartaz" class="hover:underline">Cartaz</a></li>
+                                <li><a href="/sobre" class="hover:underline">Sobre nós</a></li>
+                                <li><a href="/sobre" class="hover:underline">QUERO AJUDAR!</a></li>
+                        </ul>
+                </nav>
+        </header>
+        <section class="flex flex-col items-center justify-center flex-1 bg-black/60 backdrop-blur-sm py-24 px-4">
+            <div class="font-bold text-white text-center mb-16">
+            <h1 class="text-5xl md:text-6xl drop-shadow-lg mb-6">Sobre nós</h1>
+            <p class="text-2xl md:text-3xl max-w-2xl mx-auto text-white/80 drop-shadow">
+                Somos a alma das Festas de São Pedro de Caíde de Rei — um grupo de amigos, vizinhos e apaixonados pelas tradições populares portuguesas que trabalha, ano após ano, para manter viva a chama da nossa cultura e da nossa terra
+            </p>
+            </div>
+
+            <div class="w-full max-w-5xl space-y-16">
+            {grupo.map((categoria) => (
+                <div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-8 tracking-wide drop-shadow">
+                    {categoria.Categoria}
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                    {categoria.Pessoas.map((pessoa) => (
+                    <div class="flex flex-col items-center bg-white/90 rounded-2xl p-6 shadow-xl border border-white/40 hover:scale-105 transition-transform duration-200">
+                        <div class="w-24 h-24 bg-black/10 rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-white shadow">
+                        {pessoa.Foto
+                            ? <img src={pessoa.Foto} alt={pessoa.Nome} class="object-cover w-full h-full" />
+                            : <span class="text-4xl font-bold text-black/70">{pessoa.Nome[0]}</span>
+                        }
+                        </div>
+                        <h3 class="text-xl font-semibold text-black">{pessoa.Nome}</h3>
+                        {pessoa.Descrição && (
+                        <p class="text-black/70 text-center mt-2 text-base">{pessoa.Descrição}</p>
+                        )}
+                    </div>
+                    ))}
+                </div>
+                </div>
+            ))}
+            </div>
+        </section>
+        </section>
+</div>

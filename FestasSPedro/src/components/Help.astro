@@ -1,0 +1,94 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400 flex flex-col items-center justify-center px-6 md:px-12 py-16">
+    <!-- Header -->
+    <header class="absolute top-6 w-full flex justify-between items-center px-6 md:px-12 z-50">
+        <a href="/" class="flex items-center">
+            <img src="/sp_logo.png" alt="Logo Festas São Pedro" class="h-16 md:h-20" />
+        </a>
+
+        <!-- Botão hamburger para mobile -->
+        <button id="menu-btn" class="md:hidden ml-auto flex flex-col space-y-1.5 text-blue-900 focus:outline-none">
+            <span class="block w-6 h-0.5 bg-blue-900 transition-transform duration-300"></span>
+            <span class="block w-6 h-0.5 bg-blue-900 transition-transform duration-300"></span>
+            <span class="block w-6 h-0.5 bg-blue-900 transition-transform duration-300"></span>
+        </button>
+
+        <!-- Menu de navegação -->
+        <nav>
+            <ul id="menu" class="hidden md:flex md:space-x-8 text-blue-900 text-base md:text-lg font-medium drop-shadow-lg absolute md:static top-16 right-6 bg-white/90 md:bg-transparent p-6 md:p-0 rounded-lg md:rounded-none flex-col md:flex-row gap-4 md:gap-0">
+                <li><a href="/" class="hover:text-blue-600 transition block text-end">Home</a></li>
+                <li><a href="/eventos" class="hover:text-blue-600 transition block text-end">Eventos</a></li>
+                <li><a href="/cartaz" class="hover:text-blue-600 transition block text-end">Cartaz</a></li>
+                <li><a href="/sobre" class="hover:text-blue-600 transition block text-end">Sobre nós</a></li>
+                <li><a href="/help" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition block text-center">Quero Ajudar!</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="w-full max-w-5xl p-8 md:p-12 text-center">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-4 drop-shadow-md">Quero Ajudar!</h1>
+        <p class="text-blue-800 text-lg md:text-xl mb-10 max-w-3xl mx-auto drop-shadow-sm">
+            Seja parte da tradição! Escolha como deseja colaborar para que as Festas de São Pedro sejam inesquecíveis.
+        </p>
+
+        <!-- Opções de ajuda -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Voluntário -->
+            <div class="bg-yellow-400 h-fit text-blue-900 p-8 rounded-2xl shadow-2xl hover:shadow-blue-500/50 transform hover:-translate-y-2 transition duration-300">
+                <div class="mb-4">
+                    <h2 class="font-bold text-2xl mb-2">Voluntário</h2>
+                </div>
+                <p class="text-sm mb-6">Ajude na organização, logística e apoio durante as festas.</p>
+                <a href="mailto:contato@festasaopedro.com?subject=Quero%20ser%20voluntário" 
+                   class="inline-block bg-blue-900 text-yellow-400 font-bold px-6 py-3 rounded-full hover:bg-blue-800 shadow-md transition">
+                    Enviar Email
+                </a>
+            </div>
+
+            <!-- Doações -->
+            <div class="bg-yellow-400 h-fit text-blue-900 p-8 rounded-2xl shadow-2xl hover:shadow-blue-500/50 transform hover:-translate-y-2 transition duration-300">
+                <div class="mb-4">
+                    <h2 class="font-bold text-2xl mb-2">Doações</h2>
+                </div>
+                <p class="text-sm mb-6">Contribua financeiramente para manter as tradições vivas.</p>
+                <div class="flex flex-col gap-3">
+                    <a href="https://www.paypal.com/donate?hosted_button_id=SEU_CODIGO_PAYPAL" target="_blank" 
+                       class="inline-block bg-blue-900 text-yellow-400 font-bold px-6 py-3 rounded-full hover:bg-blue-800 shadow-md transition">
+                        Doar pelo PayPal
+                    </a>
+                    <a href="https://www.mbway.pt/pagar/SEU_NUMERO_MBWAY" target="_blank" 
+                       class="inline-block bg-blue-900 text-yellow-400 font-bold px-6 py-3 rounded-full hover:bg-blue-800 shadow-md transition">
+                        Doar via MB WAY
+                    </a>
+                    <div class="bg-blue-900 text-yellow-400 px-6 py-3 rounded-full shadow-md">
+                        Transferência Bancária: <br>
+                        IBAN: PT50 XXXX XXXX XXXX XXXX XXXX X <br>
+                        BIC/SWIFT: XXXXXPT
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patrocínio -->
+            <div class="bg-yellow-400 h-fit text-blue-900 p-8 rounded-2xl shadow-2xl hover:shadow-blue-500/50 transform hover:-translate-y-2 transition duration-300">
+                <div class="mb-4">
+                    <h2 class="font-bold text-2xl mb-2">Patrocínio</h2>
+                </div>
+                <p class="text-sm mb-6">Sua marca pode estar presente em um dos maiores eventos da região.</p>
+                <a href="mailto:contato@festasaopedro.com?subject=Quero%20patrocinar" 
+                   class="inline-block bg-blue-900 text-yellow-400 font-bold px-6 py-3 rounded-full hover:bg-blue-800 shadow-md transition">
+                    Enviar Email
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+const btn = document.getElementById('menu-btn');
+const menu = document.getElementById('menu');
+
+btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('flex');
+});
+</script>

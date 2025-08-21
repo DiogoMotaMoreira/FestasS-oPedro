@@ -1,81 +1,100 @@
 ---
-const eventos = [
-    {
-        data: "Setembro, 18:00",
-        descricao: "Noite de fados tradicional.",
-    },
-    {
-        data: "Outubro, 17:00",
-        descricao: "Festival de sopas e sabores regionais.",
-    },
-    {
-        data: "Novembro, 16:00",
-        descricao: "Magusto comunitário com castanhas e música popular.",
-    },
-    {
-        data: "Dezembro, 19:00",
-        descricao: "Concerto de Natal com coro local.",
-    },
-    {
-        data: "Janeiro, 15:00",
-        descricao: "Encontro de Janeiras pelas ruas da vila.",
-    },
-    {
-        data: "Fevereiro, 20:00",
-        descricao: "Baile de Carnaval com concurso de máscaras.",
-    },
-    {
-        data: "Março, 18:00",
-        descricao: "Tarde de teatro amador.",
-    },
-    {
-        data: "Abril, 17:00",
-        descricao: "Caminhada solidária e piquenique.",
-    },
-    {
-        data: "Maio, 16:00",
-        descricao: "Feira de artesanato local.",
-    },
-    {
-        data: "Junho, 21:00",
-        descricao: "Arraial de São João com sardinhada.",
-    },
-    {
-        data: "Julho, 18:00",
-        descricao: "Abertura oficial das festas com atuação da banda filarmónica.",
-    },
-];
 ---
+<div class="min-h-screen bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400 flex flex-col items-center">
+    <!-- Header -->
+    <header class="absolute top-6 w-full flex justify-between items-center px-6 md:px-12 z-50">
+        <a href="/" class="flex items-center">
+            <img src="/sp_logo.png" alt="Logo Festas São Pedro" class="h-16 md:h-20" />
+        </a>
 
-<div class="min-h-screen bg-[url('/bandeiras.png')] bg-cover bg-top flex flex-col bg-fixed">
-        <header class="w-full py-4 flex justify-between items-center bg-transparent fixed top-0 left-0 z-50">
-                <div class="ml-8">
-                    <ul class="flex space-x-6 text-white font-semibold">
-                        <li><a href="/" class="hover:underline">Home</a></li>
-                    </ul>
-                     <!-- <img src="/logo.png" alt="Logo Festas São Pedro" class="h-12" /> -->
-                </div> 
-                <nav class="mr-8">
-                        <ul class="flex space-x-6 text-white font-semibold">
-                                <li><a href="/eventos" class="hover:underline">Eventos</a></li>
-                                <li><a href="/cartaz" class="hover:underline">Cartaz</a></li>
-                                <li><a href="/sobre" class="hover:underline">Sobre nós</a></li>
-                                <li><a href="/sobre" class="hover:underline">QUERO AJUDAR!</a></li>
-                        </ul>
-                </nav>
-        </header>
-        <section class="flex flex-col items-center justify-center flex-1 bg-transparent">
-                <!-- Linha cronológica de eventos -->
-                <div class="my-60 w-full max-w-3xl">
-                        <ol class="relative border-l-4 border-yellow-400">
-                                {eventos.map((evento, idx) => (
-                                    <li class={`ml-6${idx !== eventos.length - 1 ? " mb-10" : ""}`}>
-                                        <span class="absolute flex items-center justify-center w-8 h-8 bg-yellow-400 rounded-full -left-4 ring-4 ring-white"></span>
-                                        <h3 class="text-lg font-semibold text-white">{evento.data}</h3>
-                                        <p class="text-white">{evento.descricao}</p>
-                                    </li>
-                                ))}
-                        </ol>
-                </div>
-        </section>
+        <!-- Botão hamburger para mobile -->
+        <button id="menu-btn" class="md:hidden ml-auto flex flex-col space-y-1.5 text-blue-900 focus:outline-none">
+            <span class="block w-6 h-0.5 bg-blue-900"></span>
+            <span class="block w-6 h-0.5 bg-blue-900"></span>
+            <span class="block w-6 h-0.5 bg-blue-900"></span>
+        </button>
+
+        <!-- Menu -->
+        <nav>
+            <ul id="menu" class="hidden md:flex md:space-x-8 text-blue-900 text-base md:text-lg font-medium drop-shadow-lg absolute md:static top-16 right-6 bg-white/90 md:bg-transparent p-6 md:p-0 rounded-lg md:rounded-none flex-col md:flex-row gap-4 md:gap-0">
+                <li><a href="/" class="hover:text-blue-600 transition block text-end">Home</a></li>
+                <li><a href="/eventos" class="hover:text-blue-600 transition block text-end">Eventos</a></li>
+                <li><a href="/cartaz" class="hover:text-blue-600 transition block text-end">Cartaz</a></li>
+                <li><a href="/sobre" class="hover:text-blue-600 transition block text-end">Sobre nós</a></li>
+                <li><a href="/help" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition block text-center">Quero Ajudar!</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo -->
+    <section class="flex flex-col items-center justify-center flex-1 mt-32 w-full px-6 md:px-12">
+        <div class="w-full max-w-4xl">
+            <!-- Abas (Meses) -->
+            <div id="tabs" class="flex flex-wrap gap-2 mb-6 justify-center"></div>
+
+            <!-- Lista de eventos -->
+            <div id="eventos-container" class="bg-white/70 p-6 rounded-lg shadow-lg">
+                <ol id="eventos-list" class="relative border-l-4 border-yellow-400"></ol>
+            </div>
+        </div>
+    </section>
 </div>
+
+<script src="/events.js" is:inline></script>
+
+<script is:inline>
+function agruparPorMes(eventos) {
+    const grupos = {};
+    eventos.forEach(evento => {
+        const chave = `${evento.mes} ${evento.ano}`;
+        if (!grupos[chave]) grupos[chave] = [];
+        grupos[chave].push(evento);
+    });
+    return grupos;
+}
+
+const tabsContainer = document.getElementById('tabs');
+const lista = document.getElementById('eventos-list');
+const eventosPorMes = agruparPorMes(eventos);
+const meses = Object.keys(eventosPorMes);
+
+// Criar botões para cada mês
+meses.forEach((mesAno, idx) => {
+    const btn = document.createElement('button');
+    btn.textContent = mesAno;
+    btn.className = `px-4 py-2 rounded-lg font-semibold ${idx === 0 ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-600'} shadow`;
+    btn.addEventListener('click', () => {
+        // Atualizar abas
+        document.querySelectorAll('#tabs button').forEach(b => b.className = 'px-4 py-2 rounded-lg font-semibold bg-white text-blue-600 shadow');
+        btn.className = 'px-4 py-2 rounded-lg font-semibold bg-yellow-400 text-blue-900 shadow';
+
+        // Renderizar eventos do mês
+        lista.innerHTML = '';
+        eventosPorMes[mesAno].forEach((evento, idxEvento) => {
+            const li = document.createElement('li');
+            li.className = `ml-6 mb-8`;
+            li.innerHTML = `
+                <span class="absolute flex items-center justify-center w-8 h-8 bg-yellow-400 rounded-full -left-4 ring-4 ring-white shadow-lg"></span>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">${evento.descricao}</h3>
+                    <p class="text-blue-800 font-medium">${evento.hora}</p>
+                    <p class="text-blue-900">${evento.dia} ${evento.mes}</p>
+                </div>
+            `;
+            lista.appendChild(li);
+        });
+    });
+    tabsContainer.appendChild(btn);
+});
+
+// Carregar primeiro mês por padrão
+tabsContainer.querySelector('button').click();
+
+// Menu mobile toggle
+const btnMenu = document.getElementById('menu-btn');
+const menu = document.getElementById('menu');
+btnMenu.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('flex');
+});
+</script>

@@ -1,0 +1,79 @@
+
+  <div id="countdown" class="flex space-x-4 text-center text-blue-800">
+    <div>
+      <div id="months" class="text-2xl font-mono">00</div>
+      <div class="uppercase mt-1">Meses</div>
+    </div>
+    <div>
+      <div id="days" class="text-2xl font-mono">00</div>
+      <div class="uppercase mt-1">Dias</div>
+    </div>
+    <div>
+      <div id="hours" class="text-2xl font-mono">00</div>
+      <div class="uppercase mt-1">Horas</div>
+    </div>
+    <div>
+      <div id="minutes" class="text-2xl font-mono">00</div>
+      <div class="uppercase mt-1">Minutos</div>
+    </div>
+    <div>
+      <div id="seconds" class="text-2xl font-mono">00</div>
+      <div class="uppercase mt-1">Segundos</div>
+    </div>
+  </div>
+
+  <script>
+    // Data alvo do contador (ano, mês-1, dia, hora, minuto, segundo)
+    const targetDate = new Date(2026, 6, 3, 0, 0, 0);
+
+    function updateCountdown() {
+      const now = new Date();
+      // calcula diferença total em milissegundos
+      let diff = targetDate - now;
+
+      // se já passou da data, para e zera tudo
+      if (diff <= 0) {
+        document.querySelectorAll('#countdown div > div:first-child')
+          .forEach(el => el.textContent = '00');
+        clearInterval(timer);
+        return;
+      }
+
+      // cálculo de meses
+      let months = (targetDate.getFullYear() - now.getFullYear()) * 12;
+      months += targetDate.getMonth() - now.getMonth();
+      // ajusta se o dia/hora ainda não chegou
+      const anchor = new Date(now.getFullYear(), now.getMonth() + months, now.getDate(),
+                              now.getHours(), now.getMinutes(), now.getSeconds());
+      if (anchor > targetDate) months--;
+
+      // milissegundos restantes após remover meses
+      const afterMonths = new Date(now.getFullYear(), now.getMonth() + months, now.getDate(),
+                                   now.getHours(), now.getMinutes(), now.getSeconds());
+      diff = targetDate - afterMonths;
+
+      // constantes de tempo
+      const msPerDay = 1000 * 60 * 60 * 24;
+      const msPerHour = 1000 * 60 * 60;
+      const msPerMin  = 1000 * 60;
+
+      // extrai dias, horas, minutos e segundos
+      const days    = Math.floor(diff / msPerDay);
+      diff %= msPerDay;
+      const hours   = Math.floor(diff / msPerHour);
+      diff %= msPerHour;
+      const minutes = Math.floor(diff / msPerMin);
+      const seconds = Math.floor((diff % msPerMin) / 1000);
+
+      // atualiza DOM com padding
+      document.getElementById('months').textContent  = String(months).padStart(2, '0');
+      document.getElementById('days').textContent    = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    // inicia atualização a cada 1s
+    const timer = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>

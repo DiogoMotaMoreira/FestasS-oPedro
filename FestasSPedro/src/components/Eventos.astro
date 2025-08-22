@@ -27,8 +27,11 @@
     </header>
 
     <!-- Conteúdo -->
-    <section class="flex flex-col items-center justify-center flex-1 mt-32 w-full px-6 md:px-12">
+    <section class="flex flex-col items-center justify-center flex-1 my-32 w-full px-6 md:px-12">
         <div class="w-full max-w-4xl">
+            <div>
+                <p class="text-center text-xl font-medium text-blue-900 p-4"><span class="text-red-600">Aviso:</span> Qualquer evento, data e hora podem ser alterados a qualquer momento!</p>
+            </div>
             <!-- Abas (Meses) -->
             <div id="tabs" class="flex flex-wrap gap-2 mb-6 justify-center"></div>
 
@@ -59,7 +62,39 @@ const eventosPorMes = agruparPorMes(eventos);
 const meses = Object.keys(eventosPorMes);
 
 // Criar botões para cada mês
-meses.forEach((mesAno, idx) => {
+const now = new Date();
+const diaAtual = now.getDay();
+const mesAtual = now.getMonth(); // 0 = Janeiro
+const anoAtual = now.getFullYear();
+
+// Mapa para converter nome do mês PT → número (0-11)
+const mapaMeses = {
+    "Janeiro": 0,
+    "Fevereiro": 1,
+    "Março": 2,
+    "Abril": 3,
+    "Maio": 4,
+    "Junho": 5,
+    "Julho": 6,
+    "Agosto": 7,
+    "Setembro": 8,
+    "Outubro": 9,
+    "Novembro": 10,
+    "Dezembro": 11
+};
+
+// Filtrar apenas mês atual e próximo
+const mesesFiltrados = meses.filter(mesAno => {
+    const [mesNome, ano] = mesAno.split(" ");
+    const mesIndex = mapaMeses[mesNome];
+    return (
+        (parseInt(ano) === anoAtual && (mesIndex === mesAtual || mesIndex === mesAtual + 1)) ||
+        (parseInt(ano) === anoAtual + 1 && mesIndex === 0 && mesAtual === 11)
+    );
+});
+
+// Criar botões só para os meses filtrados
+mesesFiltrados.forEach((mesAno, idx) => {
     const btn = document.createElement('button');
     btn.textContent = mesAno;
     btn.className = `px-4 py-2 rounded-lg font-semibold ${idx === 0 ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-600'} shadow`;
@@ -68,16 +103,16 @@ meses.forEach((mesAno, idx) => {
         document.querySelectorAll('#tabs button').forEach(b => b.className = 'px-4 py-2 rounded-lg font-semibold bg-white text-blue-600 shadow');
         btn.className = 'px-4 py-2 rounded-lg font-semibold bg-yellow-400 text-blue-900 shadow';
 
-        // Renderizar eventos do mês
+        // Renderizar eventos
         lista.innerHTML = '';
-        eventosPorMes[mesAno].forEach((evento, idxEvento) => {
+        eventosPorMes[mesAno].forEach(evento => {
             const li = document.createElement('li');
             li.className = `ml-6 mb-8`;
             li.innerHTML = `
-                <span class="absolute flex items-center justify-center w-8 h-8 bg-yellow-400 rounded-full -left-4 ring-4 ring-white shadow-lg"></span>
+                <span class="absolute flex items-center justify-center w-8 h-8 ${evento.descricao != "Bar, Música e Conversas" ? 'bg-blue-900' : 'bg-yellow-400'} rounded-full -left-4 ring-4 ring-white shadow-lg"></span>
                 <div class="bg-white p-4 rounded-lg shadow-md">
                     <h3 class="text-xl font-bold text-blue-900">${evento.descricao}</h3>
-                    <p class="text-blue-800 font-medium">${evento.hora}</p>
+                    ${diaAtual == evento.dia || diaAtual+1 == evento.dia ? '<p class="text-blue-800 font-medium">${evento.hora}</p>' : ""}
                     <p class="text-blue-900">${evento.dia} ${evento.mes}</p>
                 </div>
             `;
@@ -86,6 +121,12 @@ meses.forEach((mesAno, idx) => {
     });
     tabsContainer.appendChild(btn);
 });
+
+// Carregar primeiro mês por padrão (se existir)
+if (mesesFiltrados.length > 0) {
+    tabsContainer.querySelector('button').click();
+}
+
 
 // Carregar primeiro mês por padrão
 tabsContainer.querySelector('button').click();

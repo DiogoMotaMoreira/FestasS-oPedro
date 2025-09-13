@@ -6,114 +6,33 @@ const grupo = [
             {
                 Nome: "Carlos Moreira",
                 Foto: "",
-                Descrição: "Criador, Gestor, Relações Públicas"
+                Descrição: ""
             },
             {
                 Nome: "Diogo Moreira",
                 Foto: "",
-                Descrição: "Informático, Relações Públicas"
+                Descrição: ""
             },
             {
                 Nome: "Carlos Moreira Jr.",
                 Foto: "",
-                Descrição: "Tesoureiro, Relações Públicas"
+                Descrição: ""
             }
         ]
     },
     {
         Categoria: "Equipa Principal",
         Pessoas: [
-            {
-                Nome: "Carla Patricia",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "Maria Ribeiro",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "Cecília Ferreira",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "Manuela Moreira",
-                Foto: "",
-                Descrição:""
-            },
-            {
-                Nome: "Raquel Moreira",
-                Foto: "",
-                Descrição:""
-            },
-            {
-                Nome: "Paulinho",
-                Foto: "",
-                Descrição:""
-            }
         ]
     },
     {
         Categoria: "Patrocinadores Oficiais",
         Pessoas: [
-            {
-                Nome: "DS Imobiliária Lousada",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "DSI Créditos Freamunde",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "ManuelCars",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "Caide de Rei SC",
-                Foto: "",
-                Descrição:""
-            }
         ]
     },
     {
         Categoria: "Top 6 Apoiadores",
         Pessoas: [
-            {
-                Nome: "São Pedro",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "Vitorino",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "Carlos Mota",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "Arsénio",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "David Moreira",
-                Foto: "",
-                Descrição: ""
-            },
-            {
-                Nome: "Inês Moreira",
-                Foto: "",
-                Descrição: ""
-            }
-
         ]
     },
 ];
@@ -161,11 +80,12 @@ const grupo = [
         <div class="w-full flex flex-col gap-10">
             {grupo.map((categoria) => (
                 <div key={categoria.Categoria} class="space-y-6">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center drop-shadow">
+                    {categoria.Pessoas.length!==0 && (<h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center drop-shadow">
                         {categoria.Categoria}
-                    </h2>
+                    </h2>)
+                    }
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {categoria.Pessoas.map((pessoa) => (
+                        { categoria.Pessoas.map((pessoa) => (
                             <div key={pessoa.Nome} class="flex flex-col items-center bg-white/90 rounded-2xl p-6 shadow-xl border border-white/40 hover:scale-105 transition-transform duration-200">
                                 <div class="w-24 h-24 bg-blue-200/30 rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-white shadow">
                                     {pessoa.Foto ? (

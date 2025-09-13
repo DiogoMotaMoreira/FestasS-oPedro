@@ -1,33 +1,12 @@
 const eventos = [
     {
-        dia: "12",
-        mes: "Setembro",
-        ano: "2025",
-        hora: "21H - 24H",
-        descricao: "Abertura oficial praça S.Pedro",
-    },
-    {
-        dia: "13",
-        mes: "Setembro",
-        ano: "2025",
-        hora: "18H - 24H",
-        descricao: "Arrail com Confraria do Sarrabulho Doce",
-    },
-    {
-        dia: "19",
-        mes: "Setembro",
-        ano: "2025",
-        hora: "21H - 24H",
-        descricao: "Bar, Música e Conversas",
-    },
-    {
         dia: "20",
         mes: "Setembro",
         ano: "2025",
-        hora: "21H - 24H",
-        descricao: "Bar, Música e Conversas",
+        hora: "20H - 24H",
+        descricao: "Abertura oficial praça S.Pedro",
     },
-    {
+    /*{
         dia: "26",
         mes: "Setembro",
         ano: "2025",
@@ -723,6 +702,6 @@ const eventos = [
         ano: "2026",
         hora: "-",
         descricao: "Inicio das Festas",
-    },
+    },*/
     
 ];

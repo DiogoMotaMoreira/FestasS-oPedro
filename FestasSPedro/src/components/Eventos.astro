@@ -28,17 +28,59 @@
 
     <!-- Conteúdo -->
     <section class="flex flex-col items-center justify-center flex-1 my-32 w-full px-6 md:px-12">
-        <div class="w-full max-w-4xl">
-            <div>
-                <p class="text-center text-xl font-medium text-blue-900 p-4"><span class="text-red-600">Aviso:</span> Qualquer evento, data e hora podem ser alterados a qualquer momento!</p>
-            </div>
-            <!-- Abas (Meses) -->
-            <div id="tabs" class="flex flex-wrap gap-2 mb-6 justify-center"></div>
+        <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Eventos -->
+            <div class="lg:col-span-2 order-1 lg:order-none">
+                <!-- Abas (Meses) -->
+                <div id="tabs" class="flex flex-wrap gap-2 mb-6 justify-center"></div>
 
-            <!-- Lista de eventos -->
-            <div id="eventos-container" class="bg-white/70 p-6 rounded-lg shadow-lg">
-                <ol id="eventos-list" class="relative border-l-4 border-yellow-400"></ol>
+                <!-- Lista de eventos -->
+                <div id="eventos-container" class="bg-white/70 p-6 rounded-lg shadow-lg">
+                    <ol id="eventos-list" class="relative border-l-4 border-yellow-400"></ol>
+                </div>
             </div>
+
+            <!-- Tempo e localização -->
+            <div class="lg:col-span-1 order-2 lg:order-none">
+                <div id="tempo-agora" class="text-blue-900 p-6 bg-white/90 rounded-lg shadow-lg mb-6">
+                    <h3 class="font-bold text-2xl mb-4 border-b-2 border-yellow-400 pb-2">Tempo para hoje</h3>
+                    <div class="flex flex-col space-y-4 text-blue-900 text-lg">
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                          <span class="text-2xl">🌡️</span>
+                          <span>Temperatura:</span>
+                        </div>
+                        <div id="temp-range" class="font-semibold"></div>
+                      </div>
+
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                          <span class="text-2xl">🌧️</span>
+                          <span>Precipitação:</span>
+                        </div>
+                        <div id="precip-prob" class="font-semibold"></div>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Como nos encontrar -->
+                <div class="text-blue-900 p-6 bg-white/90 rounded-lg shadow-lg mb-6">
+                    <h3 class="font-bold text-2xl mb-4 border-b-2 border-yellow-400 pb-2">Como nos encontrar</h3>
+                    <div class="text-lg">
+                        <p class="mb-4"><strong>Endereço:</strong></p>
+                        <p>Avenida Padre Fernando da Cunha Carvalho 184, Caíde de Rei, Portugal, 4620-073</p>
+                        <div class="mt-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2998.9074031102446!2d-8.225749!3d41.267351999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDE2JzAyLjUiTiA4wrAxMyczMi43Ilc!5e0!3m2!1spt-PT!2spt!4v1758147606870!5m2!1spt-PT!2spt" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-center text-xl font-medium text-blue-900 p-4"><span class="text-red-600">Aviso:</span> Qualquer evento, data e hora podem ser alterados a qualquer momento devido a fatores externos (ex. meteorologia)!</p>
+                </div>
+            </div>
+
+
         </div>
     </section>
 </div>
@@ -83,17 +125,10 @@ const mapaMeses = {
     "Dezembro": 11
 };
 
-// Filtrar apenas mês atual e próximo
-const mesesFiltrados = meses.filter(mesAno => {
-    const [mesNome, ano] = mesAno.split(" ");
-    const mesIndex = mapaMeses[mesNome];
-    return (
-        (parseInt(ano) === anoAtual && (mesIndex === mesAtual || mesIndex === mesAtual + 1)) ||
-        (parseInt(ano) === anoAtual + 1 && mesIndex === 0 && mesAtual === 11)
-    );
-});
+// Todos os meses
+const mesesFiltrados = meses.filter(mes => mes.includes('2025'));
 
-// Criar botões só para os meses filtrados
+// Criar botões para todos os meses
 mesesFiltrados.forEach((mesAno, idx) => {
     const btn = document.createElement('button');
     btn.textContent = mesAno;
@@ -112,7 +147,7 @@ mesesFiltrados.forEach((mesAno, idx) => {
                 <span class="absolute flex items-center justify-center w-8 h-8 ${evento.descricao != "Bar, Música e Conversas" ? 'bg-blue-900' : 'bg-yellow-400'} rounded-full -left-4 ring-4 ring-white shadow-lg"></span>
                 <div class="bg-white p-4 rounded-lg shadow-md">
                     <h3 class="text-xl font-bold text-blue-900">${evento.descricao}</h3>
-                    ${diaAtual == evento.dia || diaAtual+1 == evento.dia ? '<p class="text-blue-800 font-medium">${evento.hora}</p>' : ""}
+                    <h4 class="text-lg font-bold text-blue-900/80">${evento.extra ? evento.extra : ''}</h4>
                     <p class="text-blue-900">${evento.dia} ${evento.mes}</p>
                 </div>
             `;
@@ -127,10 +162,6 @@ if (mesesFiltrados.length > 0) {
     tabsContainer.querySelector('button').click();
 }
 
-
-// Carregar primeiro mês por padrão
-tabsContainer.querySelector('button').click();
-
 // Menu mobile toggle
 const btnMenu = document.getElementById('menu-btn');
 const menu = document.getElementById('menu');
@@ -138,4 +169,40 @@ btnMenu.addEventListener('click', () => {
     menu.classList.toggle('hidden');
     menu.classList.toggle('flex');
 });
+</script>
+
+<script>
+  async function fetchTempoAtual(cityId) {
+    try {
+      const res = await fetch(`https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/${cityId}.json`);
+      if (!res.ok) throw new Error('Erro na API IPMA: ' + res.status);
+      const data = await res.json();
+      // data.data é um array de previsões diárias
+      const hoje = data.data[0];  // supondo que [0] é o dia atual
+      return {
+        maxima: hoje.tMax,
+        minima: hoje.tMin,
+        precipProb: hoje.precipitaProb,
+        tipo: hoje.predWindDir,  // ou algum campo de tipo de tempo, ou descritivo, dependendo do que a API devolve
+        vento: hoje.windSpeed,    // adaptas os nomes conforme o JSON real
+      };
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  }
+
+  async function mostraTempo(cityId) {
+    const elem = document.getElementById('tempo-agora');
+    const t = await fetchTempoAtual(cityId);
+    if (!t) {
+      elem.textContent = 'Não foi possível obter os dados meteorológicos.';
+      return;
+    }
+    elem.querySelector('#temp-range').textContent = `${t.minima}°C — ${t.maxima}°C`;
+    elem.querySelector('#precip-prob').textContent = `${t.precipProb}%`;
+  }
+
+  // Exemplo: cityId de Lisboa é 1110600? (usa o correto da lista da API)
+  mostraTempo(1081505);
 </script>

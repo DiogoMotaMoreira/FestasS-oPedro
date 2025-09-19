@@ -5,12 +5,13 @@ const eventos = [
         ano: "2025",
         hora: "20H - 24H",
         descricao: "Abertura oficial praça S.Pedro",
+        extra: "Momento Musical: Cavaquinhos de Caíde de Rei"
     },
-    /*{
+    {
         dia: "26",
         mes: "Setembro",
         ano: "2025",
-        hora: "21H - 24H",
+        hora: "20H30 - 24H",
         descricao: "Bar, Música e Conversas",
     },
     {
@@ -28,13 +29,6 @@ const eventos = [
         descricao: "Bar, Música e Conversas",
     },
     {
-        dia: "4",
-        mes: "Outubro",
-        ano: "2025",
-        hora: "21H - 24H",
-        descricao: "Bar, Música e Conversas",
-    },
-    {
         dia: "10",
         mes: "Outubro",
         ano: "2025",
@@ -46,7 +40,7 @@ const eventos = [
         mes: "Outubro",
         ano: "2025",
         hora: "18H - 24H",
-        descricao: "Festa Francesinha",
+        descricao: "Bar, Música e Conversas",
     },
     {
         dia: "17",
@@ -74,7 +68,7 @@ const eventos = [
         mes: "Outubro",
         ano: "2025",
         hora: "20H - 24H",
-        descricao: "Noite de Danças",
+        descricao: "Bar, Música e Conversas",
     },
     {
         dia: "31",
@@ -189,9 +183,6 @@ const eventos = [
         hora: "20H - 22H",
         descricao: "Noite Natal",
     },
-
-
-
     {
         dia: "2",
         mes: "Janeiro",
@@ -702,6 +693,6 @@ const eventos = [
         ano: "2026",
         hora: "-",
         descricao: "Inicio das Festas",
-    },*/
+    },
     
 ];

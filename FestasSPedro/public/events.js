@@ -7,7 +7,7 @@ const eventos = [
         descricao: "Abertura oficial praça S.Pedro",
         extra: "Momento Musical: Cavaquinhos de Caíde de Rei"
     },
-    {
+    /*{
         dia: "26",
         mes: "Setembro",
         ano: "2025",
@@ -21,6 +21,13 @@ const eventos = [
         hora: "21H - 24H",
         descricao: "Bar, Música e Conversas",
     },
+    {
+        dia: "28",
+        mes: "Setembro",
+        ano: "2025",
+        hora: "21H - 24H",
+        descricao: "Bar, Música e Conversas",
+    },*/
     {
         dia: "3",
         mes: "Outubro",

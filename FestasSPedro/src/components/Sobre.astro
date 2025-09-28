@@ -5,17 +5,17 @@ const grupo = [
         Pessoas: [
             {
                 Nome: "Diogo Mota Moreira",
-                Foto: "/comissao/diogo.jpg",
+                Foto: "/comissao/diogo.webp",
                 Categorias: "Vice-Presidente, Marketing, Bar, Informática, Relações Públicas"
             },
             {
                 Nome: "Carlos Moreira",
-                Foto: "/comissao/carlos.png",
+                Foto: "/comissao/carlos.webp",
                 Categorias: "Presidente, Organização de espaços, Relações Públicas, Patrocionios"
             },
             {
                 Nome: "Carlos Mota Moreira",
-                Foto: "/comissao/carlosMota.jpg",
+                Foto: "/comissao/carlosMota.webp",
                 Categorias: "Vice-Presidente, Bar, Patrocínios, Relações Públicas"
             }
         ]
@@ -25,78 +25,83 @@ const grupo = [
         Pessoas: [
             {
                 Nome: 'Patricia Mota',
-                Foto: '/comissao/patricia.jpg',
+                Foto: '/comissao/patricia.webp',
                 Categorias:'Bar, Restauração'
             },
             {
                 Nome: 'Maria Ribeiro',
-                Foto: '/comissao/maria.jpg',
+                Foto: '/comissao/maria.webp',
                 Categorias:'Marketing, Bar'
             },
             {
                 Nome: 'Vitor Moreira',
-                Foto: '/comissao/vitor.jpg',
+                Foto: '/comissao/vitor.webp',
                 Categorias:'Organização de espaços, Bar, Relações Públicas, Patrocinios'
             },
             {
                 Nome: 'Marina Nunes',
-                Foto: '/comissao/marina.jpg',
+                Foto: '/comissao/marina.webp',
                 Categorias:'Restauração'
             },
             {
                 Nome: 'João Natário',
-                Foto: '/comissao/natario.jpg',
+                Foto: '/comissao/natario.webp',
                 Categorias:'Relações Públicas, Patrocínios'
             },
             {
                 Nome: 'Manuela Moreira',
-                Foto: '/comissao/manuela.jpg',
+                Foto: '/comissao/manuela.webp',
                 Categorias:'Coordenação Cortejos, Bar'
             },
             {
                 Nome: 'Paulo Fernandes',
-                Foto: '/comissao/paulo.jpg',
+                Foto: '/comissao/paulo.webp',
                 Categorias:'Bar'
             },
             {
                 Nome: 'Raquel Moreira',
-                Foto: '/comissao/raquel.jpg',
+                Foto: '/comissao/raquel.webp',
                 Categorias:'Bar'
             },
             {
                 Nome: 'Luis Santos',
-                Foto: '/comissao/luis.jpg',
+                Foto: '/comissao/luis.webp',
                 Categorias:'Organização de espaços'
             },
             {
                 Nome: 'Lurdes Moreira',
-                Foto: '/comissao/lurdes.jpg',
+                Foto: '/comissao/lurdes.webp',
                 Categorias:'Restauração'
             },
             {
                 Nome: 'Vitorino Moreira',
-                Foto: '/comissao/vitorino.jpg',
+                Foto: '/comissao/vitorino.webp',
                 Categorias:'Organização de espaços'
             },
             {
                 Nome: 'Maria Moreira',
-                Foto: '/comissao/mariaMoreira.jpg',
+                Foto: '/comissao/mariaMoreira.webp',
                 Categorias:'Restauração'
             },
             {
                 Nome: 'Samuel Silva',
-                Foto: '/comissao/samuel.jpg',
+                Foto: '/comissao/samuel.webp',
                 Categorias:'Relações Públicas'
             },
             {
                 Nome: 'Cecília Ferreira',
-                Foto: '/comissao/cecilia.jpg',
+                Foto: '/comissao/cecilia.webp',
                 Categorias:'Bar'
             },
             {
                 Nome: 'Elsio Costa',
-                Foto: '/comissao/elsio.jpg',
+                Foto: '/comissao/elsio.webp',
                 Categorias:'Organização de espaços, Bar'
+            },
+            {
+                Nome: 'Glória Costa',
+                Foto: '/comissao/gloria.webp',
+                Categorias:'Coordenação Cortejos, Bar'
             },
             {
                 Nome: 'Em breve, novos reforços...',
@@ -123,7 +128,7 @@ const grupo = [
     <!-- Header -->
     <header class="absolute top-6 w-full flex justify-between items-center px-6 md:px-12 z-50">
         <a href="/" class="flex items-center">
-            <img src="/sp_logo.png" alt="Logo Festas São Pedro" class="h-16 md:h-20" />
+            <img src="/sp_logo.webp" alt="Logo Festas São Pedro" class="h-16 md:h-20" />
         </a>
 
         <!-- Botão hamburger para mobile -->
@@ -165,7 +170,7 @@ const grupo = [
                         {categoria.Categoria}
                     </h2>)
                     }
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id={categoria.Categoria === "Equipa" ? "equipa-grid" : undefined}>
+                    <div class={categoria.Categoria === "Equipa" ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"} id={categoria.Categoria === "Equipa" ? "equipa-grid" : undefined}>
 
                         { categoria.Pessoas.map((pessoa) => (
                             <div class="flex flex-col items-center bg-gradient-to-br from-blue-100/90 to-yellow-100/90 rounded-2xl p-6 shadow-xl border border-white/40 hover:scale-105 transition-transform duration-200">

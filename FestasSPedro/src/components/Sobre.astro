@@ -4,14 +4,14 @@ const grupo = [
         Categoria: "Coordenação",
         Pessoas: [
             {
-                Nome: "Diogo Mota Moreira",
-                Foto: "/comissao/diogo.webp",
-                Categorias: "Vice-Presidente, Marketing, Bar, Informática, Relações Públicas"
-            },
-            {
                 Nome: "Carlos Moreira",
                 Foto: "/comissao/carlos.webp",
                 Categorias: "Presidente, Organização de espaços, Relações Públicas, Patrocionios"
+            },
+            {
+                Nome: "Diogo Mota Moreira",
+                Foto: "/comissao/diogo.webp",
+                Categorias: "Vice-Presidente, Marketing, Bar, Informática, Relações Públicas"
             },
             {
                 Nome: "Carlos Mota Moreira",
@@ -124,7 +124,7 @@ const grupo = [
 ];
 ---
 
-<div class="min-h-screen relative flex flex-col items-center justify-center px-6 md:px-12 bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400">
+<div class="min-h-screen relative flex flex-col items-center justify-center px-2 sm:px-6 md:px-12 bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400">
     <!-- Header -->
     <header class="absolute top-6 w-full flex justify-between items-center px-6 md:px-12 z-50">
         <a href="/" class="flex items-center">
@@ -170,15 +170,14 @@ const grupo = [
                         {categoria.Categoria}
                     </h2>)
                     }
-                    <div class={categoria.Categoria === "Equipa" ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"} id={categoria.Categoria === "Equipa" ? "equipa-grid" : undefined}>
-
+                    <div class={categoria.Categoria === "Equipa" ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6" : "grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6"} id={categoria.Categoria === "Equipa" ? "equipa-grid" : undefined}>
                         { categoria.Pessoas.map((pessoa) => (
-                            <div class="flex flex-col items-center bg-gradient-to-br from-blue-100/90 to-yellow-100/90 rounded-2xl p-6 shadow-xl border border-white/40 hover:scale-105 transition-transform duration-200">
-                                {pessoa.Foto ? (<div class="w-24 h-24 bg-blue-200/30 rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-white shadow">
+                            <div class="flex flex-col items-center bg-gradient-to-br from-blue-100/90 to-yellow-100/90 rounded-2xl p-2 sm:p-6 shadow-xl border border-white/40 hover:scale-105 transition-transform duration-200">
+                                {pessoa.Foto ? (<div class="w-24 h-24 bg-blue-200/30 rounded-full flex items-center justify-center mb-2 sm:mb-4 overflow-hidden border-4 border-white shadow">
                                     <img src={pessoa.Foto} alt={pessoa.Nome} class="object-cover w-full h-full" />
                                 </div>) : (<></>)
                                 }
-                                <h3 class="text-xl font-semibold text-blue-900">{pessoa.Nome}</h3>
+                                <h3 class="sm:text-xl font-semibold text-blue-900">{pessoa.Nome}</h3>
                                 {pessoa.Categorias && (
                                     <div class="flex flex-wrap justify-center gap-1 mt-2">
                                         {pessoa.Categorias.split(', ').map((categoria) => (

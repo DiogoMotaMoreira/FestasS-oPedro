@@ -128,11 +128,17 @@ const mapaMeses = {
 // Todos os meses
 const mesesFiltrados = meses.filter(mes => mes.includes('2025'));
 
+// Nomes dos meses em português
+const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+const currentMonthName = monthNames[mesAtual];
+const currentMonthKey = `${currentMonthName} 2025`;
+
 // Criar botões para todos os meses
 mesesFiltrados.forEach((mesAno, idx) => {
     const btn = document.createElement('button');
     btn.textContent = mesAno;
-    btn.className = `px-4 py-2 rounded-lg font-semibold ${idx === 0 ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-600'} shadow`;
+    const isCurrentMonth = mesAno === currentMonthKey;
+    btn.className = `px-4 py-2 rounded-lg font-semibold ${isCurrentMonth ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-600'} shadow`;
     btn.addEventListener('click', () => {
         // Atualizar abas
         document.querySelectorAll('#tabs button').forEach(b => b.className = 'px-4 py-2 rounded-lg font-semibold bg-white text-blue-600 shadow');
@@ -157,9 +163,10 @@ mesesFiltrados.forEach((mesAno, idx) => {
     tabsContainer.appendChild(btn);
 });
 
-// Carregar primeiro mês por padrão (se existir)
-if (mesesFiltrados.length > 0) {
-    tabsContainer.querySelector('button').click();
+// Carregar mês atual por padrão, ou primeiro se não existir
+const defaultButton = Array.from(tabsContainer.querySelectorAll('button')).find(btn => btn.textContent === currentMonthKey) || tabsContainer.querySelector('button');
+if (defaultButton) {
+    defaultButton.click();
 }
 
 // Menu mobile toggle

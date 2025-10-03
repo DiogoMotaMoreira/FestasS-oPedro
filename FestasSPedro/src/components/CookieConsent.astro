@@ -1,0 +1,47 @@
+---
+// Cookie Consent Component
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 z-50 hidden">
+  <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+    <p class="text-sm mb-2 md:mb-0">
+      Utilizamos cookies para melhorar a sua experiência no nosso website. Ao continuar a navegar, concorda com a nossa política de cookies.
+    </p>
+    <div class="flex space-x-2">
+      <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Aceitar Todos
+      </button>
+      <button id="reject-cookies" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">
+        Rejeitar Não Essenciais
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Check if consent already given
+  const consent = localStorage.getItem('cookieConsent');
+  const banner = document.getElementById('cookie-banner');
+
+  if (!consent && banner) {
+    banner.classList.remove('hidden');
+  }
+
+  // Accept cookies
+  const acceptBtn = document.getElementById('accept-cookies');
+  if (acceptBtn && banner) {
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      banner.classList.add('hidden');
+    });
+  }
+
+  // Reject non-essential cookies
+  const rejectBtn = document.getElementById('reject-cookies');
+  if (rejectBtn && banner) {
+    rejectBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'rejected');
+      banner.classList.add('hidden');
+    });
+  }
+</script>

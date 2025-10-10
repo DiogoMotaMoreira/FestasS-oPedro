@@ -3,55 +3,95 @@ import Contador from './Contador.astro';
 ---
 
 <div class="relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400">
-    <!-- Header -->
-    <header class="absolute top-6 w-full flex justify-between items-center px-6 md:px-12 z-50">
-        <a href="/" class="flex items-center">
-            <img src="/sp_logo.webp" alt="Logo Festas São Pedro" class="h-16 md:h-20" />
-        </a>
+    <!-- Carousel Banner -->
+<main class="carousel relative overflow-hidden w-full flex-1 flex items-center max-w-full h-[600px] md:h-[700px]">
+        <div class="slides flex flex-row items-center transition-transform duration-500 h-full w-full" id="slides">
+            
+            <!-- Slide 1: Welcome -->
+            <div class="slide flex-shrink-0 w-full flex flex-col items-center justify-center text-center px-6">
+                <!-- Logo central -->
+                <img src="/sp_logo.webp" alt="Logo Festas São Pedro" class="max-w-[280px] md:max-w-[400px] w-full h-auto" />
 
-        <!-- Botão hamburger para mobile -->
-        <button id="menu-btn" class="md:hidden ml-auto flex flex-col space-y-1.5 text-blue-900 focus:outline-none">
-            <span class="block w-6 h-0.5 bg-blue-900"></span>
-            <span class="block w-6 h-0.5 bg-blue-900"></span>
-            <span class="block w-6 h-0.5 bg-blue-900"></span>
-        </button>
+                <!-- Datas -->
+                <p class="text-2xl md:text-3xl text-blue-900 font-bold drop-shadow-md mt-4">
+                    29 de Junho
+                </p>
+                <p class="text-2xl md:text-3xl text-blue-900 font-bold drop-shadow-md mb-4">
+                    2 - 5 de Julho
+                </p>
 
-        <!-- Menu de navegação -->
-        <nav>
-            <ul id="menu" class="hidden md:flex md:space-x-8 text-blue-900 text-base md:text-lg font-medium drop-shadow-lg absolute md:static top-16 right-6 bg-white/90 md:bg-transparent p-6 md:p-0 rounded-lg md:rounded-none flex-col md:flex-row gap-4 md:gap-0">
-                <li><a href="/" class="hover:text-blue-600 transition block text-end">Home</a></li>
-                <li><a href="/eventos" class="hover:text-blue-600 transition block text-end">Eventos</a></li>
-                <li><a href="/cartaz" class="hover:text-blue-600 transition block text-end">Cartaz</a></li>
-                <li><a href="/sobre" class="hover:text-blue-600 transition block text-end">Sobre nós</a></li>
-                <li><a href="/help" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition block text-center">Quero Ajudar!</a></li>
-            </ul>
-        </nav>
-    </header>
+                <!-- Contador -->
+                <Contador />
+            </div>
 
-    <!-- Conteúdo principal -->
-    <main class="flex flex-col items-center text-center">
-        <!-- Logo central -->
-        <img src="/sp_logo.webp" alt="Logo Festas São Pedro" class="max-w-[280px] md:max-w-[400px] w-full h-auto" />
+            <!-- Slide 2: Rifas -->
+            <div class="slide flex-shrink-0 flex-grow-0 basis-full flex flex-col items-center justify-center text-center px-6 py-4 max-w-full overflow-x-hidden">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-2 sm:mb-6 drop-shadow-md">Rifas e Prémios</h2>
+                <div class="bg-white/70 p-4 md:p-6 rounded-lg shadow-lg max-w-xs sm:max-w-md md:max-w-4xl mx-auto">
+                    <p class="text-base sm:text-lg text-blue-900 mb-1 sm:mb-4">Participe das nossas rifas e tenha a chance de ganhar prémios incríveis!</p>
+                    <div class="text-blue-900">
+                        <div class="bg-gradient-to-r from-[#A68446] via-[#F2CF66] to-[#F2CF66] p-4 sm:p-6 rounded-lg shadow-md border border-white">
+                            <div class="flex flex-col md:flex-row items-center">
+                                <img src="/Rifas/MSC-Opera.webp" alt="MSC-Opera" class="rounded-xl w-full md:w-1/2 h-auto mb-2 md:mb-0 md:mr-6 shadow-md" />
+                                <div class="text-center md:text-left">
+                                    <h3 class="font-bold text-lg md:text-2xl text-blue-900 mb-2">Cruzeiro Mediterrâneo</h3>
+                                    <p class="text-sm md:text-base text-blue-800 ">07 Junho - 17 Junho 2026</p>
+                                    <p class="text-sm md:text-base text-blue-800 ">Cruzeiro de 11 dias</p>
+                                    <p class="text-sm md:text-base text-blue-800 mb-1">MSC OPERA</p>
+                                    <p class="text-sm md:text-lg font-bold text-blue-800 mb-1"><strong>Valor:</strong> 1€ por rifa</p>
+                                    <a href="/bilheteira" class="inline-block mt-4 bg-blue-800 text-yellow-100 px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md ">Comprar Agora!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-2 sm:mt-4 text-xs sm:text-sm text-blue-700">Bilhetes disponíveis online ou nos nossos estabelecimentos.</p>
+                </div>
+            </div>
+        </div>
 
-        <!-- Datas -->
-         <p class="text-2xl md:text-3xl text-blue-900 font-bold drop-shadow-md mt-4">
-            29 de Junho
-        </p>
-        <p class="text-2xl md:text-3xl text-blue-900 font-bold drop-shadow-md mb-4">
-            2 - 5 de Julho
-        </p>
-
-        <!-- Botão principal -->
-        <Contador />
+        <!-- Navigation Dots -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10" id="dots">
+            <button class="w-4 h-4 bg-white rounded-full opacity-50 hover:opacity-100 transition" data-slide="0"></button>
+            <button class="w-4 h-4 bg-white/50 rounded-full opacity-50 hover:opacity-100 transition" data-slide="1"></button>
+        </div>
     </main>
 </div>
 
 <script>
-const btn = document.getElementById('menu-btn');
-const menu = document.getElementById('menu');
+// Carousel functionality
+const slides = document.getElementById('slides') as HTMLElement | null;
+const dots = document.querySelectorAll('#dots button') as NodeListOf<HTMLButtonElement>;
 
-btn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-    menu.classList.toggle('flex');
-});
+if (slides && dots.length > 0) {
+  let currentSlide = 0;
+
+  function showSlide(index: number) {
+    if (slides) {
+      console.log('Sliding to index:', index);
+      console.log('Slides container:', slides);
+      console.log('Slides children:', slides.children);
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    }
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('bg-white', i === index);
+      dot.classList.toggle('bg-white/50', i !== index);
+    });
+  }
+
+  // Show initial slide
+  showSlide(currentSlide);
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      currentSlide = index;
+      showSlide(currentSlide);
+    });
+  });
+
+  // Auto slide every 5 seconds
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % dots.length;
+    showSlide(currentSlide);
+  }, 5000);
+}
 </script>

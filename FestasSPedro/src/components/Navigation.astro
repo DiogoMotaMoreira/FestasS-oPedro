@@ -1,0 +1,50 @@
+---
+---
+
+<header class="absolute top-6 w-full flex justify-between items-center px-6 md:px-12 z-50">
+    <a href="/" class="flex items-center">
+        <img src="/sp_logo.webp" alt="Logo Festas São Pedro" class="h-16 md:h-20" />
+    </a>
+
+    <!-- Botão hamburger para mobile -->
+    <button id="menu-btn" class="md:hidden ml-auto flex flex-col space-y-1.5 text-blue-900 focus:outline-none p-2">
+        <span class="block w-6 h-0.5 bg-blue-900"></span>
+        <span class="block w-6 h-0.5 bg-blue-900"></span>
+        <span class="block w-6 h-0.5 bg-blue-900"></span>
+    </button>
+
+    <!-- Menu de navegação -->
+    <nav>
+        <ul id="menu" class="hidden md:flex md:space-x-8 text-blue-900 text-base md:text-lg font-medium drop-shadow-lg absolute md:static top-16 right-6 bg-white/90 md:bg-transparent p-6 md:p-0 rounded-lg md:rounded-none flex-col md:flex-row gap-4 md:gap-0 z-60">
+            <li><a href="/" class="hover:text-blue-600 transition block text-end">Home</a></li>
+            <li><a href="/bilheteira" class="hover:text-blue-600 transition block text-end">Bilheteira</a></li>
+            <li><a href="/eventos" class="hover:text-blue-600 transition block text-end">Eventos</a></li>
+            <li><a href="/cartaz" class="hover:text-blue-600 transition block text-end">Cartaz</a></li>
+            <li><a href="/sobre" class="hover:text-blue-600 transition block text-end">Sobre nós</a></li>
+            <li><a href="/help" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition block text-center">Quero Ajudar!</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    });
+
+    // Close menu when clicking on a link
+    const links = menu.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+      });
+    });
+  }
+});
+</script>

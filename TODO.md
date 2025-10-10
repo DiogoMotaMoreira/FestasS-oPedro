@@ -1,0 +1,5 @@
+- [x] Modify modal structure: Place image full-width at top
+- [x] Stack details below the image
+- [x] Arrange itinerary in 2-column grid on larger screens
+- [x] Increase padding and spacing throughout the modal
+- [x] Center the buy button

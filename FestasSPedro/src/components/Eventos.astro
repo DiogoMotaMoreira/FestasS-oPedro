@@ -1,30 +1,7 @@
 ---
 ---
 <div class="min-h-screen bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400 flex flex-col items-center">
-    <!-- Header -->
-    <header class="absolute top-6 w-full flex justify-between items-center px-6 md:px-12 z-50">
-        <a href="/" class="flex items-center">
-            <img src="/sp_logo.webp" alt="Logo Festas São Pedro" class="h-16 md:h-20" />
-        </a>
 
-        <!-- Botão hamburger para mobile -->
-        <button id="menu-btn" class="md:hidden ml-auto flex flex-col space-y-1.5 text-blue-900 focus:outline-none">
-            <span class="block w-6 h-0.5 bg-blue-900"></span>
-            <span class="block w-6 h-0.5 bg-blue-900"></span>
-            <span class="block w-6 h-0.5 bg-blue-900"></span>
-        </button>
-
-        <!-- Menu -->
-        <nav>
-            <ul id="menu" class="hidden md:flex md:space-x-8 text-blue-900 text-base md:text-lg font-medium drop-shadow-lg absolute md:static top-16 right-6 bg-white/90 md:bg-transparent p-6 md:p-0 rounded-lg md:rounded-none flex-col md:flex-row gap-4 md:gap-0">
-                <li><a href="/" class="hover:text-blue-600 transition block text-end">Home</a></li>
-                <li><a href="/eventos" class="hover:text-blue-600 transition block text-end">Eventos</a></li>
-                <li><a href="/cartaz" class="hover:text-blue-600 transition block text-end">Cartaz</a></li>
-                <li><a href="/sobre" class="hover:text-blue-600 transition block text-end">Sobre nós</a></li>
-                <li><a href="/help" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition block text-center">Quero Ajudar!</a></li>
-            </ul>
-        </nav>
-    </header>
 
     <!-- Conteúdo -->
     <section class="flex flex-col items-center justify-center flex-1 my-32 w-full px-6 md:px-12">
@@ -105,7 +82,7 @@ const meses = Object.keys(eventosPorMes);
 
 // Criar botões para cada mês
 const now = new Date();
-const diaAtual = now.getDay();
+const diaAtual = now.getDate(); // Day of month (1-31)
 const mesAtual = now.getMonth(); // 0 = Janeiro
 const anoAtual = now.getFullYear();
 
@@ -134,6 +111,16 @@ const currentMonthName = monthNames[mesAtual];
 const currentMonthKey = `${currentMonthName} 2025`;
 
 // Criar botões para todos os meses
+
+// Encontrar índice do mês atual no array mesesFiltrados
+const mesAtualIndex = mesesFiltrados.findIndex(mesAno => {
+    // mesAno é algo como "Outubro 2024"
+    const nomeMes = mesAno.split(' ')[0];
+    return mapaMeses[nomeMes] === mesAtual;
+});
+
+const defaultIndex = mesAtualIndex >= 0 ? mesAtualIndex : 0;
+
 mesesFiltrados.forEach((mesAno, idx) => {
     const btn = document.createElement('button');
     btn.textContent = mesAno;
@@ -150,7 +137,7 @@ mesesFiltrados.forEach((mesAno, idx) => {
             const li = document.createElement('li');
             li.className = `ml-6 mb-8`;
             li.innerHTML = `
-                <span class="absolute flex items-center justify-center w-8 h-8 ${evento.descricao != "Bar, Música e Conversas" ? 'bg-blue-900' : 'bg-yellow-400'} rounded-full -left-4 ring-4 ring-white shadow-lg"></span>
+                <span class="absolute flex items-center justify-center w-8 h-8 ${evento.descricao != "Bar e Música" ? 'bg-blue-900' : 'bg-yellow-400'} rounded-full -left-4 ring-4 ring-white shadow-lg"></span>
                 <div class="bg-white p-4 rounded-lg shadow-md">
                     <h3 class="text-xl font-bold text-blue-900">${evento.descricao}</h3>
                     <h4 class="text-lg font-bold text-blue-900/80">${evento.extra ? evento.extra : ''}</h4>
@@ -179,7 +166,7 @@ btnMenu.addEventListener('click', () => {
 </script>
 
 <script>
-  async function fetchTempoAtual(cityId) {
+  async function fetchTempoAtual(cityId: number) {
     try {
       const res = await fetch(`https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/${cityId}.json`);
       if (!res.ok) throw new Error('Erro na API IPMA: ' + res.status);
@@ -199,15 +186,18 @@ btnMenu.addEventListener('click', () => {
     }
   }
 
-  async function mostraTempo(cityId) {
+  async function mostraTempo(cityId: number) {
     const elem = document.getElementById('tempo-agora');
+    if (!elem) return;
     const t = await fetchTempoAtual(cityId);
     if (!t) {
       elem.textContent = 'Não foi possível obter os dados meteorológicos.';
       return;
     }
-    elem.querySelector('#temp-range').textContent = `${t.minima}°C — ${t.maxima}°C`;
-    elem.querySelector('#precip-prob').textContent = `${t.precipProb}%`;
+    const tempRange = elem.querySelector('#temp-range');
+    const precipProb = elem.querySelector('#precip-prob');
+    if (tempRange) tempRange.textContent = `${t.minima}°C — ${t.maxima}°C`;
+    if (precipProb) precipProb.textContent = `${t.precipProb}%`;
   }
 
   // Exemplo: cityId de Lisboa é 1110600? (usa o correto da lista da API)

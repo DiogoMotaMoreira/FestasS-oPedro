@@ -61,7 +61,7 @@ const eventos = [
         mes: "Outubro",
         ano: "2025",
         hora: "21H - 24H",
-        descricao: "Bar e Música",
+        descricao: "Noite de Karaoke",
     },
     {
         dia: "24",

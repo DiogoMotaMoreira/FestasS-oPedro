@@ -64,27 +64,6 @@ const eventos = [
         descricao: "Noite de Karaoke",
     },
     {
-        dia: "24",
-        mes: "Outubro",
-        ano: "2025",
-        hora: "21H - 24H",
-        descricao: "Bar e Música",
-    },
-    {
-        dia: "25",
-        mes: "Outubro",
-        ano: "2025",
-        hora: "20H - 24H",
-        descricao: "Bar e Música",
-    },
-    {
-        dia: "31",
-        mes: "Outubro",
-        ano: "2025",
-        hora: "21H - 24H",
-        descricao: "Noite Halloween",
-    },
-    {
         dia: "7",
         mes: "Novembro",
         ano: "2025",

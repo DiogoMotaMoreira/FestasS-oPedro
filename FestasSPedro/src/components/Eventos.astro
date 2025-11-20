@@ -103,7 +103,17 @@ const mapaMeses = {
 };
 
 // Todos os meses
-const mesesFiltrados = meses.filter(mes => mes.includes('2025'));
+const mesesFiltrados = meses.filter(mesAno => {
+    const [nomeMes, anoStr] = mesAno.split(' ');
+    const ano = parseInt(anoStr, 10);
+    const mesNum = mapaMeses[nomeMes];
+
+    // Manter meses antes de 2026 ou até fevereiro de 2026
+    if (ano < 2026) {
+        return true;
+    }
+    return ano === 2026 && mesNum <= 1; // 1 corresponde a Fevereiro
+});
 
 // Nomes dos meses em português
 const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];

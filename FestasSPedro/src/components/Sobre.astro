@@ -104,11 +104,17 @@ const grupo = [
                 Categorias:'Coordenação Cortejos, Bar'
             },
             {
+                Nome: "Manuel Silva",   
+                Foto: "/comissao/manuel.webp",
+                Categorias: "Apoio Logístico",
+                extra: true
+            },
+            {
                 Nome: 'Em breve, novos reforços...',
                 Foto: '',
-                Categorias:''
+                Categorias:'',
+                extra: true
             },
-
         ]
     },
     {
@@ -141,13 +147,13 @@ const grupo = [
         <div class="w-full flex flex-col gap-10">
             {grupo.map((categoria) => (
                 <div class="space-y-6">
-                    {(categoria.Pessoas.length!==0) && (<h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center drop-shadow">
+                    {(categoria.Pessoas.length!==0) && (categoria.Categoria != "Equipa Extra") && (<h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center drop-shadow">
                         {categoria.Categoria}
                     </h2>)
                     }
                     <div class={categoria.Categoria === "Equipa" ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6" : "grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6"} id={categoria.Categoria === "Equipa" ? "equipa-grid" : undefined}>
                         { categoria.Pessoas.map((pessoa) => (
-                            <div class="flex flex-col items-center bg-gradient-to-br from-blue-100/90 to-yellow-100/90 rounded-2xl p-2 sm:p-6 shadow-xl border border-white/40 hover:scale-105 transition-transform duration-200">
+                            <div class={`flex flex-col items-center ${ (pessoa.extra) ? "bg-gradient-to-br from-blue-100/90 to-yellow-100/90" : (categoria.Categoria === "Coordenação" || categoria.Categoria === "Equipa") ? "bg-gradient-to-br from-blue-800 to-yellow-200" : "bg-gradient-to-br from-blue-100/90 to-yellow-100/90" } rounded-2xl p-2 sm:p-6 shadow-xl border border-white/40 hover:scale-105 transition-transform duration-200`}>
                                 {pessoa.Foto ? (<div class="w-24 h-24 bg-blue-200/30 rounded-full flex items-center justify-center mb-2 sm:mb-4 overflow-hidden border-4 border-white shadow">
                                     <img src={pessoa.Foto} alt={pessoa.Nome} class="object-cover w-full h-full" />
                                 </div>) : (<></>)
@@ -177,7 +183,7 @@ const grupo = [
 <script>
 function shuffle<T>(array: T[]): T[] {
     const shuffled = [...array];
-    for (let i = shuffled.length - 2; i > 0; i--) {
+    for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
@@ -187,10 +193,19 @@ function shuffle<T>(array: T[]): T[] {
 document.addEventListener('DOMContentLoaded', () => {
     const equipaGrid = document.getElementById('equipa-grid');
     if (equipaGrid) {
-        const children = Array.from(equipaGrid.children);
-        const shuffledChildren = shuffle(children);
+        const children = Array.from(equipaGrid.children) as HTMLElement[];
+        const lastElement = children.pop();
+
+        const normals = children.filter(child => child.classList.contains('from-blue-800'));
+        const extras = children.filter(child => !child.classList.contains('from-blue-800'));
+
+        const shuffledNormals = shuffle(normals);
+        const shuffledExtras = shuffle(extras);
+
         equipaGrid.innerHTML = '';
-        shuffledChildren.forEach(child => equipaGrid.appendChild(child));
+        shuffledNormals.forEach(child => equipaGrid.appendChild(child));
+        shuffledExtras.forEach(child => equipaGrid.appendChild(child));
+        if (lastElement) equipaGrid.appendChild(lastElement);
     }
 
 

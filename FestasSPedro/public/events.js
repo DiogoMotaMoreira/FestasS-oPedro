@@ -103,7 +103,7 @@ const eventos = [
         mes: "Fevereiro",
         ano: "2026",
         hora: "21H - 24H",
-        descricao: "1º Peditório pela freguesia - Noite Carnaval",
+        descricao: "1º Peditório pela freguesia",
     },
     {
         dia: "6",

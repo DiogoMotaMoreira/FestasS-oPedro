@@ -118,15 +118,16 @@ const mesesFiltrados = meses.filter(mesAno => {
 // Nomes dos meses em português
 const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 const currentMonthName = monthNames[mesAtual];
-const currentMonthKey = `${currentMonthName} 2025`;
+const currentMonthKey = `${currentMonthName} ${anoAtual}`;
 
 // Criar botões para todos os meses
 
 // Encontrar índice do mês atual no array mesesFiltrados
 const mesAtualIndex = mesesFiltrados.findIndex(mesAno => {
     // mesAno é algo como "Outubro 2024"
-    const nomeMes = mesAno.split(' ')[0];
-    return mapaMeses[nomeMes] === mesAtual;
+    const [nomeMes, anoStr] = mesAno.split(' ');
+    const ano = parseInt(anoStr, 10);
+    return mapaMeses[nomeMes] === mesAtual && ano === anoAtual;
 });
 
 const defaultIndex = mesAtualIndex >= 0 ? mesAtualIndex : 0;
@@ -147,11 +148,19 @@ mesesFiltrados.forEach((mesAno, idx) => {
             const li = document.createElement('li');
             li.className = `ml-6 mb-8`;
             li.innerHTML = `
-                <span class="absolute flex items-center justify-center w-8 h-8 ${evento.descricao != "Bar e Música" ? 'bg-blue-900' : 'bg-yellow-400'} rounded-full -left-4 ring-4 ring-white shadow-lg"></span>
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-blue-900">${evento.descricao}</h3>
-                    <h4 class="text-lg font-bold text-blue-900/80">${evento.extra ? evento.extra : ''}</h4>
-                    <p class="text-blue-900">${evento.dia} ${evento.mes}</p>
+                <span class="absolute flex items-center justify-center w-6 h-6 ${evento.descricao != "Bar e Música" ? 'bg-blue-900' : 'bg-yellow-400'} rounded-full -left-3 ring-4 ring-white shadow-sm"></span>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-blue-50 hover:shadow-md transition-all duration-300 group">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold text-blue-900 group-hover:text-blue-700 transition-colors">${evento.descricao}</h3>
+                            ${evento.extra ? `<p class="text-blue-600 font-medium mt-1 text-sm md:text-base">${evento.extra}</p>` : ''}
+                        </div>
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center justify-center bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-blue-100">
+                                📅 ${evento.dia} ${evento.mes}
+                            </span>
+                        </div>
+                    </div>
                 </div>
             `;
             lista.appendChild(li);

@@ -129,13 +129,13 @@ const grupo = [
             },
             {
                 Nome: "Luís Ribeiro",
-                Foto: '',
+                Foto: '/comissao/luis.png',
                 Categorias:'Marketing',
                 extra: true
             },
             {
                 Nome: "Tiago Nunes",
-                Foto: '',
+                Foto: '/comissao/tiago.png',
                 Categorias:'Organização',
                 extra: true
             },
@@ -147,7 +147,7 @@ const grupo = [
             },
             {
                 Nome: "Henrique Ribeiro",
-                Foto: '',
+                Foto: '/comissao/henrique.png',
                 Categorias:'Organização',
                 extra: true
             },
@@ -229,6 +229,18 @@ const grupo = [
                 Categorias:'Cortejos',
                 extra: true
             },
+            {
+                Nome: "Célia Madureira",
+                Foto: '/comissao/celia.png',
+                Categorias:'Cortejos',
+                extra: true
+            },
+            {
+                Nome: "António Mesquita",
+                Foto: '/comissao/mesquita.png',
+                Categorias:'Cortejos',
+                extra: true
+            },
             
             {
                 Nome: 'Em breve, novos reforços...',
@@ -271,98 +283,196 @@ if (equipaGroup) {
     });
 }
 const categoriasUnicas = Array.from(categoriasSet).sort();
+
+const coordenacao = grupo.find(g => g.Categoria === "Coordenação")?.Pessoas || [];
+const equipa = grupo.find(g => g.Categoria === "Equipa")?.Pessoas || [];
+const patrocinadores = grupo.find(g => g.Categoria === "Patrocinadores Oficiais")?.Pessoas || [];
+const topApoiadores = grupo.find(g => g.Categoria === "Top 6 Apoiadores")?.Pessoas || [];
 ---
 
-<div class="min-h-screen relative flex flex-col items-center justify-center px-2 sm:px-6 md:px-12 bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400">
-    <!-- Conteúdo principal -->
-    <section class="flex flex-col items-center justify-center text-center my-32 space-y-12 max-w-6xl px-4">
-        <!-- Introdução -->
-        <div class="space-y-6">
-            <h1 class="text-5xl md:text-6xl font-bold text-blue-900 drop-shadow-lg">
-                Sobre Nós
-            </h1>
-            <p class="text-lg md:text-xl text-blue-900/90 drop-shadow-md max-w-3xl mx-auto">
-                Somos a alma das Festas de São Pedro de Caíde de Rei — um grupo de amigos, vizinhos e apaixonados pelas tradições populares portuguesas que trabalha arduamente para manter viva a chama da nossa cultura e da nossa terra.
-            </p>
-        </div>
+<div class="min-h-screen relative flex flex-col items-center pt-32 pb-20 px-4 sm:px-6 md:px-12 bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400 selection:bg-yellow-200 selection:text-blue-900">
+    
+    <!-- Cabeçalho -->
+    <div class="text-center space-y-4 mb-16 z-10 w-full max-w-4xl">
+        <h1 class="text-5xl md:text-7xl font-black text-blue-900 drop-shadow-sm tracking-tight">
+            Sobre <span class="text-yellow-500 drop-shadow-md">Nós</span>
+        </h1>
+        <p class="text-lg md:text-xl text-blue-900/80 font-medium drop-shadow-sm">
+            Somos a alma das Festas de São Pedro de Caíde de Rei — um grupo de amigos, vizinhos e apaixonados pelas tradições que trabalha para manter viva a chama da nossa cultura.
+        </p>
+    </div>
 
-        <!-- Grupos e pessoas -->
-        <div class="w-full flex flex-col gap-10">
-            {grupo.map((categoria) => (
-                <div class="space-y-6">
-                    {categoria.Categoria === "Equipa" ? (
-                        <div class="relative flex flex-col md:flex-row items-center justify-center mb-4 w-full z-30">
-                            <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center drop-shadow mb-4 md:mb-0">
-                                {categoria.Categoria}
-                            </h2>
-                            <div class="md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 relative">
-                                <button id="toggle-filters-btn" class="px-4 py-2 rounded-xl bg-white text-blue-900 font-bold shadow-md transition-all hover:shadow-lg border border-blue-100 flex items-center gap-2 group text-sm md:text-base">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                                    </svg>
-                                    <span>Filtrar</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 ml-1 text-blue-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="filter-arrow">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-                                
-                                <div id="filters-container" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-blue-100 flex-col overflow-hidden z-50 origin-top-right">
-                                    <button class="filter-btn active w-full text-left px-5 py-3 text-sm font-bold text-blue-900 bg-blue-50 hover:bg-blue-100 transition-colors border-b border-gray-100 flex justify-between items-center" data-filter="all">
-                                        Todos
-                                    </button>
-                                    {categoriasUnicas.map(cat => (
-                                        <button class="filter-btn w-full text-left px-5 py-3 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-900 transition-colors border-b border-gray-50 last:border-0" data-filter={cat}>
-                                            {cat}
-                                        </button>
-                                    ))}
-                                </div>
+    <div class="w-full max-w-7xl flex flex-col gap-20 z-10">
+        
+        <!-- Coordenação -->
+        {coordenacao.length > 0 && (
+            <section class="space-y-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center flex items-center justify-center gap-3">
+                    <span class="w-8 h-1 bg-yellow-400 rounded-full"></span>
+                    Coordenação
+                    <span class="w-8 h-1 bg-yellow-400 rounded-full"></span>
+                </h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                    {coordenacao.map((pessoa) => (
+                        <div class="bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-xl border border-white/50 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center text-center group">
+                            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full mb-6 p-1 bg-gradient-to-tr from-yellow-400 to-blue-600 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                <img src={pessoa.Foto || '/sp_logo.webp'} alt={pessoa.Nome} class="w-full h-full object-cover rounded-full border-4 border-white bg-white" />
+                            </div>
+                            <h3 class="text-2xl font-black text-blue-900 mb-2">{pessoa.Nome}</h3>
+                            <div class="flex flex-wrap justify-center gap-2 mt-2">
+                                {pessoa.Categorias?.split(', ').map(cat => (
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold uppercase tracking-wider">{cat}</span>
+                                ))}
                             </div>
                         </div>
-                    ) : (
-                        (categoria.Pessoas.length!==0) && (categoria.Categoria != "Equipa Extra") && (
-                            <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center drop-shadow">
-                                {categoria.Categoria}
-                            </h2>
-                        )
-                    )}
-                    
-                    <div class={categoria.Categoria === "Equipa" ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6" : (categoria.Categoria === "Patrocinadores Oficiais" ? "flex flex-wrap justify-center gap-6" : "grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6")} id={categoria.Categoria === "Equipa" ? "equipa-grid" : undefined}>
-                        { categoria.Pessoas.map((pessoa) => (
-                            <div class={`flex flex-col items-center ${ (categoria.Categoria === "Coordenação") ? "bg-gradient-to-br from-blue-800 to-yellow-200" : (categoria.Categoria === "Patrocinadores Oficiais") ? "bg-white w-full md:w-80 h-32 justify-center overflow-hidden" : "bg-gradient-to-br from-blue-100/90 to-yellow-100/90" } rounded-2xl ${categoria.Categoria === "Patrocinadores Oficiais" ? "p-0" : "p-2 sm:p-6"} shadow-xl border border-white/40 hover:scale-105 transition-transform duration-200`} data-categories={pessoa.Categorias || ""}>
-                                <div class={`${(categoria.Categoria === "Patrocinadores Oficiais") ? "w-full h-full" : (categoria.Categoria === "Top 6 Apoiadores") ? "w-32 h-32 bg-white rounded-xl" : "w-24 h-24 bg-blue-200/30 rounded-full"} flex items-center justify-center ${(categoria.Categoria !== "Patrocinadores Oficiais") ? "mb-2 sm:mb-4 border-4 border-white shadow" : ""} overflow-hidden`}>
-                                    {pessoa.Foto && pessoa.Foto !== '-' ? (
-                                        <img src={pessoa.Foto} alt={pessoa.Nome} class={`${(categoria.Categoria === "Top 6 Apoiadores") ? "object-contain p-2" : "object-cover"} w-full h-full`} />
-                                    ) : (
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-blue-900/40" viewBox="0 0 20 20" fill="currentColor">
+                    ))}
+                </div>
+            </section>
+        )}
+
+        <!-- Equipa -->
+        {equipa.length > 0 && (
+            <section class="space-y-8">
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 flex items-center justify-center gap-3">
+                        <span class="w-8 h-1 bg-yellow-400 rounded-full"></span>
+                        A Nossa Equipa
+                        <span class="w-8 h-1 bg-yellow-400 rounded-full"></span>
+                    </h2>
+                    <p class="text-blue-800 font-medium">Conheça todos os que fazem a festa acontecer.</p>
+                </div>
+
+                <!-- Filtro em Dropdown Suspenso -->
+                <div class="w-full relative">
+                    <div class="w-full max-w-sm mx-auto relative">
+                        <select id="equipa-filter" class="w-full appearance-none bg-white/80 backdrop-blur-md border border-white/50 text-blue-900 font-bold text-base py-3 pl-6 pr-12 rounded-full shadow-md focus:outline-none focus:ring-4 focus:ring-blue-900/20 transition-all cursor-pointer text-center text-center-last">
+                            <option value="all">Todas as Áreas</option>
+                            {categoriasUnicas.map(cat => (
+                                <option value={cat}>{cat}</option>
+                            ))}
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-blue-900">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de Equipa Compacta -->
+                <div id="equipa-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-4">
+                    {equipa.map((pessoa) => (
+                        <div class="equipa-card cursor-pointer flex items-center gap-4 p-3 bg-white/60 backdrop-blur-sm rounded-2xl shadow-sm border border-white/60 hover:bg-white hover:shadow-md hover:-translate-y-1 transition-all duration-300" data-categories={pessoa.Categorias || ""} data-nome={pessoa.Nome} data-foto={pessoa.Foto || ""}>
+                            <div class="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-blue-100 shadow-inner border-2 border-white pointer-events-none">
+                                {pessoa.Foto ? (
+                                    <img src={pessoa.Foto} alt={pessoa.Nome} loading="lazy" class="w-full h-full object-cover" />
+                                ) : (
+                                    <div class="w-full h-full flex items-center justify-center text-blue-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                                         </svg>
-                                    )}
-                                </div>
-                                {categoria.Categoria !== "Patrocinadores Oficiais" && (
-                                    <>
-                                        <h3 class="sm:text-xl font-semibold text-blue-900">{pessoa.Nome}</h3>
-                                        {pessoa.Categorias && (
-                                            <div class="flex flex-wrap justify-center gap-1 mt-2">
-                                                {pessoa.Categorias.split(', ').map((categoria) => (
-                                                    <span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
-                                                        {categoria}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </>
+                                    </div>
                                 )}
+                            </div>
+                            <div class="flex-1 min-w-0 pointer-events-none">
+                                <h4 class="font-bold text-blue-900 text-sm truncate leading-tight">{pessoa.Nome}</h4>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        <!-- Patrocinadores -->
+        <section class="mt-12 bg-white/80 backdrop-blur-md rounded-[3rem] p-8 md:p-12 shadow-2xl border border-white/50">
+            <div class="text-center space-y-4 mb-12">
+                <h2 class="text-3xl md:text-5xl font-black text-blue-900 tracking-tight">
+                    Os Nossos <span class="text-yellow-500 drop-shadow-sm">Parceiros</span>
+                </h2>
+                <p class="text-blue-800/80 font-medium max-w-2xl mx-auto">
+                    Um agradecimento especial às empresas que tornam as Festas de São Pedro possíveis. O seu apoio é fundamental.
+                </p>
+            </div>
+
+            <!-- Top Apoiadores (Logos Maiores) -->
+            {topApoiadores.length > 0 && (
+                <div class="mb-12">
+                    <h3 class="text-sm font-black uppercase tracking-widest text-gray-400 text-center mb-6">Top Apoiadores</h3>
+                    <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+                        {topApoiadores.map(pat => (
+                            <div class="w-40 h-40 md:w-56 md:h-56 bg-white rounded-3xl shadow-lg border border-gray-100 p-6 flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                                {pat.Foto ? <img src={pat.Foto} alt={pat.Nome} class="max-w-full max-h-full object-contain" /> : <span class="font-bold text-gray-300 text-center">{pat.Nome}</span>}
                             </div>
                         ))}
                     </div>
                 </div>
-            ))}
+            )}
+
+            <!-- Patrocinadores Oficiais (Logos Menores) -->
+            {patrocinadores.length > 0 ? (
+                <div>
+                    <h3 class="text-sm font-black uppercase tracking-widest text-gray-400 text-center mb-6">Patrocinadores Oficiais</h3>
+                    <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                        {patrocinadores.map(pat => (
+                            <div class="w-28 h-20 md:w-40 md:h-24 bg-white rounded-2xl shadow border border-gray-50 p-4 flex items-center justify-center hover:scale-105 transition-transform duration-300 group">
+                                {pat.Foto ? <img src={pat.Foto} alt={pat.Nome} class="max-w-full max-h-full object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" /> : <span class="text-xs font-bold text-gray-300 text-center">{pat.Nome}</span>}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <div class="text-center py-12 px-6 bg-blue-50/50 rounded-3xl border border-blue-100 border-dashed">
+                    <span class="text-5xl mb-4 block">🤝</span>
+                    <h4 class="text-xl font-bold text-blue-900 mb-2">Seja o nosso primeiro patrocinador!</h4>
+                    <p class="text-blue-800/70 text-sm max-w-md mx-auto mb-6">Ajude a promover a cultura local e ganhe visibilidade para o seu negócio durante as maiores festas do concelho.</p>
+                </div>
+            )}
+
+            <!-- CTA Patrocínios -->
+            <div class="mt-12 text-center">
+                <a href="/help" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-blue-900 text-yellow-400 font-bold uppercase tracking-wide hover:bg-blue-800 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
+                    <span>Quero Patrocinar</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal Membro Equipa -->
+    <div id="membro-modal" class="fixed inset-0 z-50 hidden bg-[#00164e]/90 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div id="membro-modal-content" class="bg-white rounded-3xl shadow-2xl w-full max-w-sm transform scale-95 transition-transform duration-300 flex flex-col relative overflow-hidden">
+            <button id="close-membro-modal" class="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-blue-900 transition-colors z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="p-8 flex flex-col items-center text-center">
+                <div class="w-32 h-32 rounded-full overflow-hidden bg-blue-100 shadow-lg border-4 border-white mb-6 relative" id="modal-foto-container">
+                    <img id="modal-foto" src="" alt="" class="w-full h-full object-cover hidden" />
+                    <div id="modal-foto-fallback" class="w-full h-full flex items-center justify-center text-blue-300 bg-blue-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+                    </div>
+                </div>
+                <h3 id="modal-nome" class="text-2xl font-black text-blue-900 mb-4 leading-tight"></h3>
+                <div class="w-full h-px bg-gray-100 mb-5"></div>
+                <p class="text-xs text-gray-400 uppercase font-bold tracking-widest mb-3">Áreas de Apoio</p>
+                <div id="modal-categorias" class="flex flex-wrap justify-center gap-2">
+                </div>
+            </div>
         </div>
-
-
-    </section>
+    </div>
 </div>
 
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    .text-center-last {
+        text-align-last: center;
+    }
+</style>
 
 <script>
 function shuffle<T>(array: T[]): T[] {
@@ -374,70 +484,126 @@ function shuffle<T>(array: T[]): T[] {
     return shuffled;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initSobre() {
     const equipaGrid = document.getElementById('equipa-grid');
     if (equipaGrid) {
         const children = Array.from(equipaGrid.children) as HTMLElement[];
-        const lastElement = children.pop();
-
-        const normals = children.filter(child => child.classList.contains('from-blue-800'));
-        const extras = children.filter(child => !child.classList.contains('from-blue-800'));
-
-        const shuffledNormals = shuffle(normals);
-        const shuffledExtras = shuffle(extras);
+        
+        // Guarda o card "Em breve..." para meter no fim, se existir
+        const emBreveIndex = children.findIndex(c => c.textContent?.includes('Em breve'));
+        let emBreveCard = null;
+        if (emBreveIndex > -1) {
+            emBreveCard = children.splice(emBreveIndex, 1)[0];
+        }
+        
+        const shuffledCards = shuffle(children);
 
         equipaGrid.innerHTML = '';
-        shuffledNormals.forEach(child => equipaGrid.appendChild(child));
-        shuffledExtras.forEach(child => equipaGrid.appendChild(child));
-        if (lastElement) equipaGrid.appendChild(lastElement);
+        shuffledCards.forEach(child => equipaGrid.appendChild(child));
+        if (emBreveCard) equipaGrid.appendChild(emBreveCard);
     }
 
-    // Lógica do Botão de Toggle (Abrir/Fechar Filtros)
-    const toggleBtn = document.getElementById('toggle-filters-btn');
-    const filtersContainer = document.getElementById('filters-container');
-    const filterArrow = document.getElementById('filter-arrow');
-
-    if (toggleBtn && filtersContainer && filterArrow) {
-        toggleBtn.addEventListener('click', () => {
-            filtersContainer.classList.toggle('hidden');
-            filtersContainer.classList.toggle('flex');
-            filterArrow.classList.toggle('rotate-180');
-        });
-    }
-
-    // Lógica de Filtragem
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Atualizar estilo dos botões
-            filterBtns.forEach(b => {
-                b.classList.remove('bg-blue-50', 'text-blue-900', 'font-bold');
-                b.classList.add('text-gray-600', 'font-medium');
-            });
-            btn.classList.remove('text-gray-600', 'font-medium');
-            btn.classList.add('bg-blue-50', 'text-blue-900', 'font-bold');
-
-            const filter = btn.getAttribute('data-filter');
-            const cards = document.querySelectorAll('#equipa-grid > div');
+    // Lógica de Filtragem (Dropdown)
+    const filterSelect = document.getElementById('equipa-filter');
+    if (filterSelect) {
+        filterSelect.addEventListener('change', (e) => {
+            const filter = (e.target as HTMLSelectElement).value;
+            const cards = document.querySelectorAll('.equipa-card');
 
             cards.forEach(card => {
                 const categories = card.getAttribute('data-categories');
                 if (filter === 'all' || (categories && categories.includes(filter))) {
-                    card.classList.remove('hidden');
-                    card.classList.add('flex');
+                    (card as HTMLElement).style.display = 'flex';
                 } else {
-                    card.classList.add('hidden');
-                    card.classList.remove('flex');
+                    (card as HTMLElement).style.display = 'none';
                 }
             });
+        });
+    }
+    
+    // Lógica do Modal
+    const cards = document.querySelectorAll('.equipa-card');
+    const modal = document.getElementById('membro-modal');
+    const modalContent = document.getElementById('membro-modal-content');
+    const closeBtn = document.getElementById('close-membro-modal');
+    const modalFoto = document.getElementById('modal-foto') as HTMLImageElement;
+    const modalFotoFallback = document.getElementById('modal-foto-fallback');
+    const modalNome = document.getElementById('modal-nome');
+    const modalCategorias = document.getElementById('modal-categorias');
 
-            // Fechar dropdown após seleção
-            filtersContainer.classList.add('hidden');
-            filtersContainer.classList.remove('flex');
-            filterArrow.classList.remove('rotate-180');
+    function openModal(nome: string, foto: string, categoriasStr: string) {
+        if (!modal || !modalContent || !modalNome || !modalFoto || !modalFotoFallback || !modalCategorias) return;
+        
+        modalNome.textContent = nome;
+        
+        if (foto) {
+            modalFoto.src = foto;
+            modalFoto.classList.remove('hidden');
+            modalFotoFallback.classList.add('hidden');
+        } else {
+            modalFoto.src = '';
+            modalFoto.classList.add('hidden');
+            modalFotoFallback.classList.remove('hidden');
+        }
+
+        modalCategorias.innerHTML = '';
+        if (categoriasStr) {
+            const cats = categoriasStr.split(',');
+            cats.forEach(cat => {
+                if (!cat.trim()) return;
+                const span = document.createElement('span');
+                span.className = 'px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm';
+                span.textContent = cat.trim();
+                modalCategorias.appendChild(span);
+            });
+        } else {
+            const span = document.createElement('span');
+            span.className = 'px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm';
+            span.textContent = 'Apoio Geral';
+            modalCategorias.appendChild(span);
+        }
+
+        modal.classList.remove('hidden');
+        void modal.offsetWidth; // Força reflow (animação)
+        modal.classList.remove('opacity-0');
+        modalContent.classList.remove('scale-95');
+        modalContent.classList.add('scale-100');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        if (!modal || !modalContent) return;
+        modal.classList.add('opacity-0');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 300);
+    }
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const nome = card.getAttribute('data-nome') || '';
+            const foto = card.getAttribute('data-foto') || '';
+            const cats = card.getAttribute('data-categories') || '';
+            openModal(nome, foto, cats);
         });
     });
 
-});
+    closeBtn?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSobre);
+} else {
+    initSobre();
+}
+document.addEventListener('astro:page-load', initSobre);
 </script>

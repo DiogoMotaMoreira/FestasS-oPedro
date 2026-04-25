@@ -1,81 +1,115 @@
 ---
+
 ---
 
-<div class="min-h-screen relative flex flex-col items-center justify-center px-4 md:px-12 bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400 py-20 overflow-hidden">
-    
+<div
+    class="min-h-screen relative flex flex-col items-center justify-center px-4 md:px-12 bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400 selection:bg-yellow-200 selection:text-blue-900 pt-32 pb-20 overflow-hidden"
+>
     <!-- Título -->
-    <div class="text-center mb-8 space-y-4 z-10">
-        <h1 class="text-5xl md:text-7xl font-black text-blue-900 drop-shadow-xl tracking-tight">
-            CARTAZ 2026
+    <div class="text-center mb-12 space-y-4 z-10">
+        <h1
+            class="text-5xl md:text-7xl font-black text-blue-900 drop-shadow-sm tracking-tight"
+        >
+            CARTAZ <span class="text-yellow-500">2026</span>
         </h1>
-        <p class="text-xl md:text-4xl text-blue-800 font-medium drop-shadow-md">
+        <p
+            class="text-xl md:text-2xl text-blue-900/80 font-medium drop-shadow-sm max-w-2xl mx-auto"
+        >
             Caíde de Rei
         </p>
     </div>
 
     <!-- Secção do Cartaz (Imagem) -->
     <div class="w-full max-w-5xl flex flex-col items-center z-10">
-        <div class="relative w-full bg-blue-900/5 rounded-3xl p-4 md:p-8 border border-blue-900/10 backdrop-blur-sm">
-            
+        <div
+            class="relative w-full bg-white/40 backdrop-blur-md rounded-3xl p-4 md:p-8 border border-white/50 shadow-xl"
+        >
             <div class="flex justify-center items-center w-full">
-                <img id="cartaz-trigger" src="/cartaz.png" alt="Cartaz Festas São Pedro 2026" class="w-full h-auto max-w-[800px] rounded-xl shadow-2xl hover:scale-[1.02] transition-transform duration-300 cursor-pointer" />
+                <img
+                    id="cartaz-trigger"
+                    src="/cartaz.png"
+                    alt="Cartaz Festas São Pedro 2026"
+                    class="w-full h-auto max-w-[800px] rounded-xl shadow-2xl hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+                />
             </div>
         </div>
     </div>
 
     <!-- Modal de Preview -->
-    <div id="cartaz-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300" aria-hidden="true">
+    <div
+        id="cartaz-modal"
+        class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300"
+        aria-hidden="true"
+    >
         <!-- Botão Fechar -->
-        <button id="close-modal" class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <button
+            id="close-modal"
+            class="absolute top-6 right-6 text-white/70 hover:text-yellow-400 transition-colors z-50 p-2"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-10 w-10"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
-        
-        <img src="/cartaz.png" alt="Cartaz Fullscreen" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300" id="modal-img" />
-    </div>
 
+        <img
+            src="/cartaz.png"
+            alt="Cartaz Fullscreen"
+            class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300"
+            id="modal-img"
+        />
+    </div>
 </div>
 
 <script>
-    const trigger = document.getElementById('cartaz-trigger');
-    const modal = document.getElementById('cartaz-modal');
-    const closeBtn = document.getElementById('close-modal');
-    const modalImg = document.getElementById('modal-img');
+    const trigger = document.getElementById("cartaz-trigger");
+    const modal = document.getElementById("cartaz-modal");
+    const closeBtn = document.getElementById("close-modal");
+    const modalImg = document.getElementById("modal-img");
 
     function openModal() {
         if (!modal || !modalImg) return;
-        modal.classList.remove('hidden');
+        modal.classList.remove("hidden");
         // Forçar reflow para a transição funcionar
         void modal.offsetWidth;
-        modal.classList.remove('opacity-0');
-        modalImg.classList.remove('scale-95');
-        modalImg.classList.add('scale-100');
-        document.body.style.overflow = 'hidden'; // Bloquear scroll
+        modal.classList.remove("opacity-0");
+        modalImg.classList.remove("scale-95");
+        modalImg.classList.add("scale-100");
+        document.body.style.overflow = "hidden"; // Bloquear scroll
     }
 
     function closeModal() {
         if (!modal || !modalImg) return;
-        modal.classList.add('opacity-0');
-        modalImg.classList.remove('scale-100');
-        modalImg.classList.add('scale-95');
-        
+        modal.classList.add("opacity-0");
+        modalImg.classList.remove("scale-100");
+        modalImg.classList.add("scale-95");
+
         setTimeout(() => {
-            modal.classList.add('hidden');
-            document.body.style.overflow = ''; // Restaurar scroll
+            modal.classList.add("hidden");
+            document.body.style.overflow = ""; // Restaurar scroll
         }, 300);
     }
 
-    trigger?.addEventListener('click', openModal);
-    closeBtn?.addEventListener('click', closeModal);
-    
+    trigger?.addEventListener("click", openModal);
+    closeBtn?.addEventListener("click", closeModal);
+
     // Fechar ao clicar fora da imagem (no fundo escuro)
-    modal?.addEventListener('click', (e) => {
+    modal?.addEventListener("click", (e) => {
         if (e.target === modal) closeModal();
     });
 
     // Fechar com a tecla ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal && !modal.classList.contains("hidden"))
+            closeModal();
     });
 </script>

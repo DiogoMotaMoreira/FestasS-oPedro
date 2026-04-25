@@ -1,186 +1,286 @@
 ---
 ---
-<div class="min-h-screen bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400 flex flex-col items-center">
+<div class="min-h-screen bg-gradient-to-br from-blue-500 via-blue-200 to-yellow-400 flex flex-col items-center pt-32 pb-12 font-sans selection:bg-yellow-200">
 
+    <section class="w-full max-w-7xl px-4 md:px-8">
+        <!-- Cabeçalho da Secção -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-blue-900 drop-shadow-sm tracking-tight">
+                Programa de Eventos
+            </h1>
+            <p class="text-lg text-blue-900/80 font-medium max-w-2xl mx-auto mt-2">
+                Fique a par de todas as atividades que preparamos para si.
+            </p>
+        </div>
 
-    <!-- Conteúdo -->
-    <section class="flex flex-col items-center justify-center flex-1 my-32 w-full px-6 md:px-12">
-        <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Eventos -->
-            <div class="lg:col-span-2 order-1 lg:order-none">
-                <!-- Abas (Meses) -->
-                <div id="tabs" class="flex flex-wrap gap-2 mb-6 justify-center"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-8 space-y-8">
+                <div id="tabs" class="flex flex-wrap justify-center pb-4 gap-3">
+                    </div>
 
-                <!-- Lista de eventos -->
-                <div id="eventos-container" class="bg-white/70 p-6 rounded-lg shadow-lg">
-                    <ol id="eventos-list" class="relative border-l-4 border-yellow-400"></ol>
+                <div class="relative">
+                    <div id="eventos-list" class="space-y-4 md:space-y-6">
+                        </div>
                 </div>
             </div>
 
-            <!-- Tempo e localização -->
-            <div class="lg:col-span-1 order-2 lg:order-none">
-                <div id="tempo-agora" class="text-blue-900 p-6 bg-white/90 rounded-lg shadow-lg mb-6">
-                    <h3 class="font-bold text-2xl mb-4 border-b-2 border-yellow-400 pb-2">Tempo para hoje</h3>
-                    <div class="flex flex-col space-y-4 text-blue-900 text-lg">
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-2">
-                          <span class="text-2xl">🌡️</span>
-                          <span>Temperatura:</span>
+            <aside class="lg:col-span-4 space-y-6">
+                <div id="tempo-agora" class="backdrop-blur-md bg-white/80 p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/50 sticky top-8">
+                    <h3 class="text-blue-900 font-black text-2xl mb-6 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-yellow-400 rounded-full"></span>
+                        Previsão Local
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50">
+                            <div class="flex items-center gap-3">
+                                <span class="text-3xl animate-bounce">🌡️</span>
+                                <span class="font-bold text-blue-800">Temperatura</span>
+                            </div>
+                            <div id="temp-range" class="text-xl font-black text-blue-600">--°</div>
                         </div>
-                        <div id="temp-range" class="font-semibold"></div>
-                      </div>
 
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-2">
-                          <span class="text-2xl">🌧️</span>
-                          <span>Precipitação:</span>
-                        </div>
-                        <div id="precip-prob" class="font-semibold"></div>
-                      </div>
-                    </div>
-                </div>
-
-                <!-- Como nos encontrar -->
-                <div class="text-blue-900 p-6 bg-white/90 rounded-lg shadow-lg mb-6">
-                    <h3 class="font-bold text-2xl mb-4 border-b-2 border-yellow-400 pb-2">Como nos encontrar</h3>
-                    <div class="text-lg">
-                        <p class="mb-4"><strong>Endereço:</strong></p>
-                        <p>Avenida Padre Fernando da Cunha Carvalho 184, Caíde de Rei, Portugal, 4620-073</p>
-                        <div class="mt-4">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2998.9074031102446!2d-8.225749!3d41.267351999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDE2JzAyLjUiTiA4wrAxMyczMi43Ilc!5e0!3m2!1spt-PT!2spt!4v1758147606870!5m2!1spt-PT!2spt" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <div class="flex items-center justify-between p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50">
+                            <div class="flex items-center gap-3">
+                                <span class="text-3xl">🌧️</span>
+                                <span class="font-bold text-blue-800">Chuva</span>
+                            </div>
+                            <div id="precip-prob" class="text-xl font-black text-blue-600">--%</div>
                         </div>
                     </div>
+
+                    <div class="mt-8 pt-8 border-t border-gray-200/50">
+                        <p class="font-bold text-blue-900 mb-4 flex items-center gap-2">
+                            📍 Caíde de Rei, Portugal
+                        </p>
+                        <div class="rounded-2xl overflow-hidden shadow-inner border-4 border-white">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000.5!2d-8.219!3d41.259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd248c8230000000%3A0x0!2zQXZlbmlkYSBQYWRyZSBGZXJuYW5kbyBkYSBDdW5oYSBDYXJ2YWxobyAxODQsIDQ2MjAtMDczIENhw61kZSBkZSBSZWksIFBvcnR1Z2Fs!5e0!3m2!1spt!2spt!4v1713280000000!5m2!1spt!2spt" 
+                                width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-6 text-xs text-red-500 font-bold bg-red-50 p-3 rounded-xl border border-red-100 uppercase tracking-tighter">
+                        ⚠️ Eventos sujeitos a alteração meteorológica
+                    </p>
                 </div>
-
-                <div>
-                    <p class="text-center text-xl font-medium text-blue-900 p-4"><span class="text-red-600">Aviso:</span> Qualquer evento, data e hora podem ser alterados a qualquer momento devido a fatores externos (ex. meteorologia)!</p>
-                </div>
-            </div>
-
-
+            </aside>
         </div>
     </section>
 </div>
 
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* Efeito de flutuação suave para o card 3D */
+    .card-3d-container {
+        perspective: 1200px;
+    }
+    
+    .card-3d {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        transform-style: preserve-3d;
+    }
+    
+    @keyframes fadeInSlide {
+        from { opacity: 0; transform: translateY(30px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .animate-event-card {
+        animation: fadeInSlide 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .animate-event-card {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>
+
+
 <script src="/events.js" is:inline></script>
 
 <script is:inline>
-function agruparPorMes(eventos) {
-    const grupos = {};
-    eventos.forEach(evento => {
-        const chave = `${evento.mes} ${evento.ano}`;
-        if (!grupos[chave]) grupos[chave] = [];
-        grupos[chave].push(evento);
-    });
-    return grupos;
-}
-
-const tabsContainer = document.getElementById('tabs');
-const lista = document.getElementById('eventos-list');
-const eventosPorMes = agruparPorMes(eventos);
-const meses = Object.keys(eventosPorMes);
-
-// Criar botões para cada mês
-const now = new Date();
-const diaAtual = now.getDate(); // Day of month (1-31)
-const mesAtual = now.getMonth(); // 0 = Janeiro
-const anoAtual = now.getFullYear();
-
-// Mapa para converter nome do mês PT → número (0-11)
-const mapaMeses = {
-    "Janeiro": 0,
-    "Fevereiro": 1,
-    "Março": 2,
-    "Abril": 3,
-    "Maio": 4,
-    "Junho": 5,
-    "Julho": 6,
-    "Agosto": 7,
-    "Setembro": 8,
-    "Outubro": 9,
-    "Novembro": 10,
-    "Dezembro": 11
-};
-
-// Todos os meses
-const mesesFiltrados = meses.filter(mesAno => {
-    const [nomeMes, anoStr] = mesAno.split(' ');
-    const ano = parseInt(anoStr, 10);
-    const mesNum = mapaMeses[nomeMes];
-
-    // Manter meses antes de 2026 ou até fevereiro de 2026
-    if (ano < 2026) {
-        return true;
+function initEventos() {
+    if (typeof eventos === 'undefined') {
+        console.error("Variável 'eventos' não está definida. Verifique se o ficheiro '/events.js' carregou corretamente.");
+        return;
     }
-    return ano === 2026 && mesNum <= 1; // 1 corresponde a Fevereiro
-});
 
-// Nomes dos meses em português
-const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-const currentMonthName = monthNames[mesAtual];
-const currentMonthKey = `${currentMonthName} ${anoAtual}`;
+    function getEventStyle(descricao) {
+        const lowerDesc = descricao.toLowerCase();
 
-// Criar botões para todos os meses
+        if (lowerDesc.includes('fogo de artifício') || lowerDesc.includes('piromusical')) {
+            return {
+                type: 'Fogo de Artifício',
+                borderColor: 'border-red-500',
+                textColor: 'text-red-700',
+                badgeBgClass: 'bg-red-100'
+            };
+        }
+        if (lowerDesc.includes('futebol') || lowerDesc.includes('mundial') || lowerDesc.includes('corridas') || lowerDesc.includes('torneio')) {
+            return {
+                type: 'Desporto',
+                borderColor: 'border-green-500',
+                textColor: 'text-green-700',
+                badgeBgClass: 'bg-green-100'
+            };
+        }
+        if (lowerDesc.includes('peditório') || lowerDesc.includes('procissão') || lowerDesc.includes('cerimónia das chaves') || lowerDesc.includes('levantamento da bandeira')) {
+            return {
+                type: 'Religioso',
+                borderColor: 'border-purple-600',
+                textColor: 'text-purple-700',
+                badgeBgClass: 'bg-purple-100'
+            };
+        }
+        if (lowerDesc.includes('música') || lowerDesc.includes('musical') || lowerDesc.includes('karaoke') || lowerDesc.includes('sunset') || lowerDesc.includes('dj') || lowerDesc.includes('cavaquinhos') || lowerDesc.includes('bombos') || lowerDesc.includes('dança') || lowerDesc.includes('cantares') || lowerDesc.includes('concerto') || lowerDesc.includes('grupo') || lowerDesc.includes('banda') || lowerDesc.includes('rosinha') || lowerDesc.includes('carlão') || lowerDesc.includes('kura') || lowerDesc.includes('zanova') || lowerDesc.includes('noite branca') || lowerDesc.includes('noite anos 80') || lowerDesc.includes('noite a bombar') || lowerDesc.includes('ladoporto') || lowerDesc.includes('remember')) {
+            return {
+                type: 'Música',
+                borderColor: 'border-yellow-400',
+                textColor: 'text-yellow-700',
+                badgeBgClass: 'bg-yellow-100'
+            };
+        }
 
-// Encontrar índice do mês atual no array mesesFiltrados
-const mesAtualIndex = mesesFiltrados.findIndex(mesAno => {
-    // mesAno é algo como "Outubro 2024"
-    const [nomeMes, anoStr] = mesAno.split(' ');
-    const ano = parseInt(anoStr, 10);
-    return mapaMeses[nomeMes] === mesAtual && ano === anoAtual;
-});
+        // Padrão: Cívico
+        return {
+            type: 'Cívico',
+            borderColor: 'border-blue-900',
+            textColor: 'text-blue-700',
+            badgeBgClass: 'bg-blue-100'
+        };
+    }
 
-const defaultIndex = mesAtualIndex >= 0 ? mesAtualIndex : 0;
+    function agruparPorMes(eventos) {
+        const grupos = {};
+        eventos.forEach(evento => {
+            const chave = `${evento.mes} ${evento.ano}`;
+            if (!grupos[chave]) grupos[chave] = [];
+            grupos[chave].push(evento);
+        });
+        return grupos;
+    }
 
-mesesFiltrados.forEach((mesAno, idx) => {
-    const btn = document.createElement('button');
-    btn.textContent = mesAno;
-    const isCurrentMonth = mesAno === currentMonthKey;
-    btn.className = `px-4 py-2 rounded-lg font-semibold ${isCurrentMonth ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-600'} shadow`;
-    btn.addEventListener('click', () => {
-        // Atualizar abas
-        document.querySelectorAll('#tabs button').forEach(b => b.className = 'px-4 py-2 rounded-lg font-semibold bg-white text-blue-600 shadow');
-        btn.className = 'px-4 py-2 rounded-lg font-semibold bg-yellow-400 text-blue-900 shadow';
+    const tabsContainer = document.getElementById('tabs');
+    const lista = document.getElementById('eventos-list');
+    
+    if (!tabsContainer || !lista) return;
 
-        // Renderizar eventos
+    const eventosPorMes = agruparPorMes(eventos);
+    const meses = Object.keys(eventosPorMes);
+
+    const now = new Date();
+    const mesAtual = now.getMonth();
+    const anoAtual = now.getFullYear();
+
+    const mapaMeses = { "Janeiro": 0, "Fevereiro": 1, "Março": 2, "Abril": 3, "Maio": 4, "Junho": 5, "Julho": 6, "Agosto": 7, "Setembro": 8, "Outubro": 9, "Novembro": 10, "Dezembro": 11 };
+
+    const mesesFiltrados = meses.filter(mesAno => {
+        const [nomeMes, anoStr] = mesAno.split(' ');
+        const ano = parseInt(anoStr, 10);
+        const mesNum = mapaMeses[nomeMes];
+        if (ano < 2026) return true;
+        return ano === 2026 && mesNum <= 6;
+    });
+
+    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    const currentMonthName = monthNames[mesAtual];
+    const currentMonthKey = `${currentMonthName} ${anoAtual}`;
+
+    function renderEventos(mesAno) {
         lista.innerHTML = '';
-        eventosPorMes[mesAno].forEach(evento => {
-            const li = document.createElement('li');
-            li.className = `ml-6 mb-8`;
-            li.innerHTML = `
-                <span class="absolute flex items-center justify-center w-6 h-6 ${evento.descricao != "Bar e Música" ? 'bg-blue-900' : 'bg-yellow-400'} rounded-full -left-3 ring-4 ring-white shadow-sm"></span>
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-blue-50 hover:shadow-md transition-all duration-300 group">
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold text-blue-900 group-hover:text-blue-700 transition-colors">${evento.descricao}</h3>
-                            ${evento.extra ? `<p class="text-blue-600 font-medium mt-1 text-sm md:text-base">${evento.extra}</p>` : ''}
+        
+        const eventosDoMes = (eventosPorMes[mesAno] || []).sort((a, b) => parseInt(a.dia) - parseInt(b.dia));
+
+        if (eventosDoMes.length === 0) {
+            lista.innerHTML = `
+                <div class="text-center py-20 px-8 bg-white/50 backdrop-blur-sm rounded-3xl shadow-inner border border-blue-100/50">
+                    <span class="text-6xl mb-4 block">🗓️</span>
+                    <h3 class="text-2xl font-bold text-blue-900">Sem eventos agendados</h3>
+                    <p class="text-blue-800/70 mt-2 max-w-md mx-auto">Ainda não há eventos programados para este mês, mas estamos a preparar novidades. Volte em breve!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        eventosDoMes.forEach((evento, index) => {
+            const style = getEventStyle(evento.descricao || '');
+            const card = document.createElement('div');
+            card.className = `animate-event-card card-3d-container`;
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            card.innerHTML = `
+                <div class="card-3d bg-white/90 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-sm md:shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-b-4 md:border-b-8 ${style.borderColor} group overflow-hidden">
+                    <div class="flex flex-row items-stretch h-full">
+                        <div class="py-4 px-2 md:p-6 flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-white w-20 md:w-32 border-r border-gray-100 flex-shrink-0">
+                            <div class="text-center">
+                                <span class="block text-3xl md:text-4xl font-black ${style.textColor} leading-none">${evento.dia}</span>
+                                <span class="block text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mt-1 md:mt-2">${(evento.mes || '').substring(0, 3)}</span>
+                            </div>
                         </div>
-                        <div class="flex-shrink-0">
-                            <span class="inline-flex items-center justify-center bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-blue-100">
-                                📅 ${evento.dia} ${evento.mes}
-                            </span>
+
+                        <div class="flex-1 p-3 md:p-5 relative flex flex-col justify-center">
+                            <h3 class="text-sm md:text-lg font-black text-gray-800 group-hover:text-blue-600 transition-colors leading-tight">
+                                ${evento.descricao || ''}
+                            </h3>
+                            ${evento.extra ? `
+                            <div class="mt-1.5 md:mt-2 p-2 bg-gray-50 rounded-lg md:rounded-xl border-l-4 border-yellow-400 italic text-gray-600 text-xs md:text-sm line-clamp-2">
+                                ${evento.extra}
+                            </div>` : ''}
                         </div>
                     </div>
                 </div>
             `;
-            lista.appendChild(li);
+            lista.appendChild(card);
         });
-    });
-    tabsContainer.appendChild(btn);
-});
+    }
 
-// Carregar mês atual por padrão, ou primeiro se não existir
-const defaultButton = Array.from(tabsContainer.querySelectorAll('button')).find(btn => btn.textContent === currentMonthKey) || tabsContainer.querySelector('button');
-if (defaultButton) {
-    defaultButton.click();
+    tabsContainer.innerHTML = '';
+    mesesFiltrados.forEach((mesAno) => {
+        const btn = document.createElement('button');
+        const [nomeMes, ano] = mesAno.split(' ');
+        btn.innerHTML = `
+            <span class="block text-[10px] opacity-60 uppercase">${ano}</span>
+            <span class="block text-lg">${nomeMes}</span>
+        `;
+        
+        const isActive = mesAno === currentMonthKey;
+        btn.className = `flex-grow sm:flex-grow-0 min-w-[100px] sm:min-w-[120px] px-4 sm:px-6 py-3 rounded-2xl font-black transition-all duration-300 shadow-sm
+            ${isActive ? 'bg-blue-900 text-yellow-400 scale-105 shadow-xl ring-4 ring-blue-900/20' : 'bg-white/80 text-blue-900 hover:bg-white hover:translate-y-[-2px] hover:shadow-md'}`;
+        
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#tabs button').forEach(b => {
+                b.classList.remove('bg-blue-900', 'text-yellow-400', 'scale-105', 'shadow-xl', 'ring-4', 'ring-blue-900/20');
+                b.classList.add('bg-white/80', 'text-blue-900', 'hover:bg-white', 'hover:translate-y-[-2px]', 'hover:shadow-md');
+            });
+            btn.classList.add('bg-blue-900', 'text-yellow-400', 'scale-105', 'shadow-xl', 'ring-4', 'ring-blue-900/20');
+            btn.classList.remove('bg-white/80', 'text-blue-900', 'hover:bg-white', 'hover:translate-y-[-2px]', 'hover:shadow-md');
+            renderEventos(mesAno);
+        });
+        tabsContainer.appendChild(btn);
+    });
+
+    const defaultBtn = Array.from(tabsContainer.querySelectorAll('button')).find(b => b.textContent.includes(currentMonthName)) || tabsContainer.querySelector('button');
+    if (defaultBtn) defaultBtn.click();
 }
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEventos);
+} else {
+    initEventos();
+}
+document.addEventListener('astro:page-load', initEventos);
 </script>
 
 <script>
   async function fetchTempoAtual(cityId: number) {
     try {
       const res = await fetch(`https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/${cityId}.json`);
-      if (!res.ok) throw new Error('Erro na API IPMA: ' + res.status);
+      if (!res.ok) throw new Error('API IPMA error: ' + res.status);
       const data = await res.json();
       // data.data é um array de previsões diárias
       const hoje = data.data[0];  // supondo que [0] é o dia atual
@@ -188,8 +288,8 @@ if (defaultButton) {
         maxima: hoje.tMax,
         minima: hoje.tMin,
         precipProb: hoje.precipitaProb,
-        tipo: hoje.predWindDir,  // ou algum campo de tipo de tempo, ou descritivo, dependendo do que a API devolve
-        vento: hoje.windSpeed,    // adaptas os nomes conforme o JSON real
+        tipo: hoje.predWindDir,
+        vento: hoje.windSpeed,
       };
     } catch (err) {
       console.error(err);
@@ -202,7 +302,10 @@ if (defaultButton) {
     if (!elem) return;
     const t = await fetchTempoAtual(cityId);
     if (!t) {
-      elem.textContent = 'Não foi possível obter os dados meteorológicos.';
+      const tempRange = elem.querySelector('#temp-range');
+      const precipProb = elem.querySelector('#precip-prob');
+      if (tempRange) tempRange.textContent = 'N/A';
+      if (precipProb) precipProb.textContent = 'N/A';
       return;
     }
     const tempRange = elem.querySelector('#temp-range');
@@ -211,6 +314,5 @@ if (defaultButton) {
     if (precipProb) precipProb.textContent = `${t.precipProb}%`;
   }
 
-  // Exemplo: cityId de Lisboa é 1110600? (usa o correto da lista da API)
   mostraTempo(1081505);
 </script>

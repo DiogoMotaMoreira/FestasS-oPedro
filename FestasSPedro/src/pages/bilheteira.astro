@@ -1,7 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PurchaseInstructions from '../components/PurchaseInstructions.astro';
-import RifaCard from '../components/RifaCard.astro';
 ---
 
 <BaseLayout title="Festas São Pedro">
@@ -12,31 +10,148 @@ import RifaCard from '../components/RifaCard.astro';
                 <!-- Cabeçalho da Secção -->
                 <div class="text-center space-y-4">
                     <h1 class="text-4xl md:text-6xl font-black text-blue-900 drop-shadow-sm tracking-tight">
-                        Bilheteira & <span class="text-yellow-500">Rifas</span>
+                        Bilheteira & <span class="text-yellow-500">Eventos</span>
                     </h1>
                     <p class="text-xl text-blue-900/80 font-medium max-w-2xl mx-auto">
-                        Apoie as Festas de São Pedro e habilite-se a ganhar prémios incríveis.
+                        Consulte os nossos eventos, rifas e iniciativas.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 gap-10">
-                    <!-- Card Rifa Premium -->
-                    <RifaCard type="full" />
+                <!-- Secção de Eventos Ativos / Destaques -->
+                <div class="space-y-6">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-blue-900 border-b border-blue-900/20 pb-2">
+                        Próximas Iniciativas
+                    </h2>
+                    
+                    <!-- Card Arraial (Destaque Principal) -->
+                    <div class="group relative bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 ring-1 ring-white/50 text-left">
+                        <!-- Sotaque Amarelo -->
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600"></div>
+                        
+                        <div class="flex flex-col md:flex-row h-full">
+                            <!-- Imagem -->
+                            <div class="md:w-5/12 relative overflow-hidden min-h-[300px] md:min-h-full">
+                                <img src="/arraial/arraial.jpeg" alt="Grande Arraial" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                                <div class="absolute top-4 left-4 bg-yellow-400 text-blue-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider border border-yellow-200">
+                                    Em Destaque
+                                </div>
+                            </div>
+                            
+                            <!-- Conteúdo -->
+                            <div class="md:w-7/12 p-6 md:p-8 flex flex-col justify-between bg-white space-y-6">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-3xl font-bold text-blue-900 leading-tight">Grande Arraial de São Pedro</h3>
+                                    </div>
+                                    <p class="text-blue-600 font-bold mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                                        <span class="flex items-center gap-1">📅 27 de Junho de 2026</span>
+                                        <span class="text-yellow-500">•</span>
+                                        <span class="flex items-center gap-1">🕒 A partir das 19H</span>
+                                        <span class="text-yellow-500">•</span>
+                                        <span class="flex items-center gap-1">📍 Largo da Igreja de Caíde de Rei</span>
+                                    </p>
+                                    
+                                    <p class="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
+                                        Um arraial tradicional imperdível em conjunto com a <strong>Confraria do Sarrabulho Doce de Caíde de Rei</strong>. A alimentação fica ao encargo da Confraria e as bebidas serão a cargo da Comissão de Festas. Venha saborear os melhores petiscos locais e apoiar a Comissão de Festas!
+                                    </p>
 
-                    <!-- Adicionar mais rifas se necessário -->
-                </div>
+                                    <!-- Menu Box -->
+                                    <div class="bg-yellow-50/50 p-5 rounded-2xl border border-yellow-100 mb-6">
+                                        <p class="text-xs text-yellow-600 font-bold uppercase tracking-wide mb-3 flex items-center gap-1">
+                                            🍽️ Menu do Arraial
+                                        </p>
+                                        <div class="grid grid-cols-2 gap-y-2 gap-x-4 text-sm text-gray-700">
+                                            <div class="flex items-center gap-2">🐟 <span class="font-medium">Sardinhas</span></div>
+                                            <div class="flex items-center gap-2">🥩 <span class="font-medium">Fêveras e Entrecosto</span></div>
+                                            <div class="flex items-center gap-2">🥔 <span class="font-medium">Batata cozida</span></div>
+                                            <div class="flex items-center gap-2">🥗 <span class="font-medium">Salada</span></div>
+                                            <div class="flex items-center gap-2">🥣 <span class="font-medium">Caldo verde</span></div>
+                                            <div class="flex items-center gap-2">🍞 <span class="font-medium">Broa</span></div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <div class="mt-16 text-center">
-                    <div class="inline-block bg-white/40 backdrop-blur-md rounded-2xl p-8 border border-white/50 shadow-lg">
-                        <h2 class="text-2xl font-bold text-blue-900 mb-2">Bilhetes para Eventos</h2>
-                        <p class="text-blue-800">A bilheteira para os concertos e eventos abrirá brevemente.</p>
+                                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-100">
+                                    <div class="text-center sm:text-left">
+                                        <p class="text-xs text-gray-500 uppercase font-semibold tracking-wide">Custo do Menu</p>
+                                        <div class="flex items-baseline gap-1 justify-center sm:justify-start">
+                                            <span class="text-3xl font-bold text-blue-900">10,00€</span>
+                                            <span class="text-sm font-semibold text-gray-500">(10 Festas)</span>
+                                        </div>
+                                        <p class="text-[10px] text-gray-400 mt-1">Adquire as tuas senhas ("Festas") no local.</p>
+                                    </div>
+                                    
+                                    <a href="/eventos" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-blue-950 to-blue-900 text-white font-bold shadow-lg shadow-blue-900/20 hover:shadow-blue-900/40 hover:-translate-y-0.5 transition-all text-center">
+                                        Ver no Calendário
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Secção de Eventos Concluídos / Arquivo -->
+                <div class="space-y-6 pt-8">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-blue-900/60 border-b border-blue-900/10 pb-2">
+                        Eventos Concluídos
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Card Rolamentos (Concluído) -->
+                        <div class="bg-gray-100/60 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/50 shadow-md flex flex-col justify-between opacity-80 filter grayscale-[20%] transition-all duration-300 hover:opacity-100 hover:grayscale-0">
+                            <div>
+                                <div class="relative w-full h-48 mb-6 overflow-hidden rounded-2xl shadow-inner">
+                                    <img src="/rolamentos/8e2b2bec-4a88-428b-a787-3fb3e7ebb9fe.jpeg" alt="Corridas de Rolamentos" class="w-full h-full object-cover object-center" />
+                                    <div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-md">
+                                        Concluído
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Corridas de Rolamentos</h3>
+                                <p class="text-xs text-gray-500 font-semibold mb-3 flex items-center gap-1">📅 Realizado em 14 de Junho de 2026</p>
+                                <p class="text-sm text-gray-600 mb-6">
+                                    A grande Corrida de Rolamentos das Festas de São Pedro realizou-se a 14 de Junho. Agradecemos a todos os concorrentes e ao público presente pelo excelente espírito desportivo!
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-200/50 flex justify-between items-center">
+                                <span class="text-xs font-bold text-red-600 uppercase tracking-wider">Inscrições Fechadas</span>
+                                <a href="/rolamentos/Regulamento.pdf" target="_blank" class="px-5 py-2.5 border-2 border-gray-300 text-gray-600 hover:bg-gray-200 hover:border-gray-400 font-semibold text-xs rounded-xl uppercase tracking-wider transition-colors shadow-sm">
+                                    Regulamento
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Card Rifas Cruzeiro (Concluído) -->
+                        <div class="bg-gray-100/60 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/50 shadow-md flex flex-col justify-between opacity-80 filter grayscale-[20%] transition-all duration-300 hover:opacity-100 hover:grayscale-0">
+                            <div>
+                                <div class="relative w-full h-48 mb-6 overflow-hidden rounded-2xl shadow-inner">
+                                    <img src="/Rifas/MSC-Opera.webp" alt="MSC-Opera" class="w-full h-full object-cover object-center" />
+                                    <div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-md">
+                                        Sorteio Realizado
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Rifas do Cruzeiro MSC Opera</h3>
+                                <p class="text-xs text-gray-500 font-semibold mb-3 flex items-center gap-1">📅 Sorteio realizado em 2 de Maio de 2026</p>
+                                <p class="text-sm text-gray-600 mb-6">
+                                    Habilite-se a ganhar uma viagem de sonho pelo Mediterrâneo a bordo do MSC Opera de 7 a 17 de Junho de 2026. O sorteio decorreu no final da missa de 2 de Maio.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-200/50 flex justify-between items-center">
+                                <span class="text-xs font-bold text-red-600 uppercase tracking-wider">Venda Encerrada</span>
+                                <button id="ver-mais-btn" class="px-5 py-2.5 border-2 border-gray-300 text-gray-600 hover:bg-gray-200 hover:border-gray-400 font-semibold text-xs rounded-xl uppercase tracking-wider transition-colors shadow-sm">
+                                    + Detalhes
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>
 
-    <!-- Modal -->
+    <!-- Modal Cruzeiro Detalhes -->
     <div id="modal" class="fixed inset-0 bg-[#00164e]/90 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none p-4">
         <div class="bg-white rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto transform scale-95 transition-transform duration-300 ease-in-out flex flex-col">
             
@@ -63,8 +178,8 @@ import RifaCard from '../components/RifaCard.astro';
                         <div class="inline-block px-3 py-1 bg-[#fed01b]/20 text-[#6f5900] rounded-full text-sm font-bold mb-2">MSC OPERA</div>
                         <h3 class="text-2xl font-bold text-[#00236f]">Experiência Mediterrânea</h3>
                         <p class="text-gray-600 leading-relaxed">
-                            Desfrute de 11 dias inesquecíveis com partida e chegada a Lisboa. 
-                            Este pacote exclusivo inclui todas as taxas portuárias e um pack de bebidas para que não tenha de se preocupar com nada.
+                            Viagem de 11 dias com partida e chegada a Lisboa. 
+                            Este pacote exclusivo inclui todas as taxas portuárias e um pack de bebidas.
                         </p>
                         
                         <div class="grid grid-cols-2 gap-4 mt-4">
@@ -79,9 +194,9 @@ import RifaCard from '../components/RifaCard.astro';
                         </div>
 
                         <div class="pt-4 border-t border-gray-100 mt-4">
-                            <p class="text-sm text-gray-500 mb-1">Sorteio Público</p>
-                            <p class="text-[#00236f] font-medium">Dia 02/05/2026 às 18h00 (Fim da missa)</p>
-                            <p class="text-xs text-gray-400">Transmissão em direto no jornal e TV local</p>
+                            <p class="text-sm text-gray-500 mb-1">Sorteio Público (Realizado)</p>
+                            <p class="text-red-600 font-bold">Sorteio encerrado a 02/05/2026 às 18h00</p>
+                            <p class="text-xs text-gray-400">Obrigado a todos os que participaram e ajudaram as Festas de São Pedro!</p>
                         </div>
                     </div>
                 </div>
@@ -95,10 +210,8 @@ import RifaCard from '../components/RifaCard.astro';
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                         <!-- Coluna 1 -->
                         <div class="space-y-6 relative">
-                            <!-- Linha vertical -->
                             <div class="absolute left-[7px] top-2 bottom-2 w-0.5 bg-gray-200"></div>
                             
-                            <!-- Items -->
                             <div class="relative pl-8">
                                 <div class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#fed01b] border-2 border-white shadow-sm"></div>
                                 <h4 class="font-bold text-[#00236f]">Dia 1: Lisboa</h4>
@@ -133,8 +246,7 @@ import RifaCard from '../components/RifaCard.astro';
                         
                         <!-- Coluna 2 -->
                         <div class="space-y-6 relative">
-                             <!-- Linha vertical -->
-                             <div class="absolute left-[7px] top-2 bottom-2 w-0.5 bg-gray-200"></div>
+                            <div class="absolute left-[7px] top-2 bottom-2 w-0.5 bg-gray-200"></div>
 
                             <div class="relative pl-8">
                                 <div class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-blue-500 border-2 border-white"></div>
@@ -171,28 +283,6 @@ import RifaCard from '../components/RifaCard.astro';
             </div>
         </div>
     </div>
-
-
-    <!-- Purchase Instructions Modal -->
-    <div id="purchase-modal" class="fixed inset-0 bg-[#00164e]/90 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none p-4">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-transform duration-300 ease-in-out flex flex-col">
-            
-            <!-- Modal Header -->
-            <div class="sticky top-0 bg-white/95 backdrop-blur z-10 px-8 py-6 border-b border-gray-100 flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-[#00236f]">Como Comprar</h2>
-                <button id="close-purchase-modal" class="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-[#00236f] transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            
-            <div class="p-8">
-                <PurchaseInstructions />
-            </div>
-        </div>
-    </div>
-
 </BaseLayout>
 
 <script>
@@ -201,12 +291,7 @@ const modal = document.getElementById('modal');
 const modalContent = modal?.querySelector('div');
 const closeModal = document.getElementById('close-modal');
 
-const comprarAgoraBtn = document.getElementById('comprar-agora-btn');
-const purchaseModal = document.getElementById('purchase-modal');
-const purchaseModalContent = purchaseModal?.querySelector('div');
-const closePurchaseModal = document.getElementById('close-purchase-modal');
-
-function toggleModal(modalElement, contentElement, show) {
+function toggleModal(modalElement: HTMLElement | null, contentElement: HTMLElement | null, show: boolean) {
     if (!modalElement || !contentElement) return;
     
     if (show) {
@@ -243,22 +328,6 @@ if (verMaisBtn && modal && closeModal) {
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             toggleModal(modal, modalContent, false);
-        }
-    });
-}
-
-if (comprarAgoraBtn && purchaseModal && closePurchaseModal) {
-    comprarAgoraBtn.addEventListener('click', () => {
-        toggleModal(purchaseModal, purchaseModalContent, true);
-    });
-
-    closePurchaseModal.addEventListener('click', () => {
-        toggleModal(purchaseModal, purchaseModalContent, false);
-    });
-
-    purchaseModal.addEventListener('click', (e) => {
-        if (e.target === purchaseModal) {
-            toggleModal(purchaseModal, purchaseModalContent, false);
         }
     });
 }

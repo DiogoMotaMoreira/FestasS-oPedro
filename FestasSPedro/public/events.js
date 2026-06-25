@@ -218,7 +218,8 @@ const eventos = [
         mes: "Maio",
         ano: "2026",
         hora: "21H - 24H",
-        descricao: "Caminhada de São Pedro + Sorteio de Viagem Mediterrâneo",
+        descricao: "Caminhada de São Pedro + Sorteio de Viagem Mediterrâneo [SORTEIO REALIZADO]",
+        extra: "Sorteio das Rifas do Cruzeiro realizado! Parabéns ao vencedor e obrigado a todos pelo vosso apoio."
     },
     {
         dia: "3",
@@ -246,7 +247,7 @@ const eventos = [
         mes: "Maio",
         ano: "2026",
         hora: "21H - 24H",
-        descricao: "Festa da Francesinha",
+        descricao: "Bar e Música",
     },
     {
         dia: "17",
@@ -260,7 +261,7 @@ const eventos = [
         mes: "Maio",
         ano: "2026",
         hora: "20H - 24H",
-        descricao: "Noite a Bombar",
+        descricao: "Bar e Música",
     },
     {
         dia: "24",
@@ -288,14 +289,14 @@ const eventos = [
         mes: "Junho",
         ano: "2026",
         hora: "21H - 24H",
-        descricao: "Festa da Criança + Torneio de Matraquilhos Humanos",
+        descricao: "Bar e Música",
     },
     {
         dia: "6",
         mes: "Junho",
         ano: "2026",
         hora: "21H - 24H",
-        descricao: "Noite branca + Espetáculo de Dança + DJs",
+        descricao: "Bar e Música",
     },
     {
         dia: "7",
@@ -309,7 +310,7 @@ const eventos = [
         mes: "Junho",
         ano: "2026",
         hora: "8H - 24H",
-        descricao: "Cantares ao desafio",
+        descricao: "Concerto - Filipe Moreira \"ONE MAN SHOW\" + insufláveis para crianças",
     },
     {
         dia: "11",
@@ -330,7 +331,8 @@ const eventos = [
         mes: "Junho",
         ano: "2026",
         hora: "15H - 19H",
-        descricao: "Corridas de Rolamentos",
+        descricao: "Corridas de Rolamentos [EVENTO CONCLUÍDO]",
+        extra: "Este evento já se realizou com enorme sucesso no dia 14 de Junho. Obrigado a todos os participantes! <br><a href='/rolamentos/Regulamento.pdf' target='_blank' class='text-blue-600 underline mt-2 inline-block font-bold hover:text-blue-800 transition-colors'>Consultar Regulamento</a>"
     },
     {
         dia: "17",
@@ -351,7 +353,7 @@ const eventos = [
         mes: "Junho",
         ano: "2026",
         hora: "21H - 24H",
-        descricao: "Danças Tradicionais e Jogos Populares",
+        descricao: "Torneio de Matraquilhos Humanos",
     },
     {
         dia: "23",
@@ -364,8 +366,9 @@ const eventos = [
         dia: "27",
         mes: "Junho",
         ano: "2026",
-        hora: "15H - 20H",
+        hora: "A partir das 19h",
         descricao: "Arraial de São Pedro com Confraria do Sarrabulho Doce",
+        extra: "Largo da Igreja de Caíde de Rei. Alimentação ao encargo da Confraria (sardinhas, fêveras, entrecosto, batata cozida, salada, caldo verde, broa) e bebidas a cargo da Comissão de Festas. (10 Festas / 10€)"
     },
     {
         dia: "28",
